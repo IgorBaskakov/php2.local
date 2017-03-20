@@ -1,8 +1,8 @@
 <?php
 
-require __DIR__ . '/Db.php';
+require_once __DIR__ . '/Article.php';
 
-$db = new Db;
-$data = $db->query('SELECT * FROM news');
+$article = new Article;
+$data = $article->findAll();
 
 var_dump($data);
