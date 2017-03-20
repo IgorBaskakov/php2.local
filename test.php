@@ -2,7 +2,6 @@
 
 require_once __DIR__ . '/Article.php';
 
-$article = new Article;
-$data = $article->findAll();
+$data = Article::findAll();
 
 var_dump($data);
