@@ -1,7 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: user10
- * Date: 21.03.2017
- * Time: 0:32
- */
+
+require __DIR__ . '/Db.php';
+
+$db = new Db;
+$data = $db->query('SELECT * FROM news');
+
+var_dump($data);
