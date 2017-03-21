@@ -1,5 +1,6 @@
 <?php
 
+namespace Models;
 
 abstract class Model
 {
@@ -9,7 +10,7 @@ abstract class Model
 
     public static function findAll()
     {
-        $db = new Db;
+        $db = new \Models\Db;
         $sql = 'SELECT * FROM ' . static::TABLE;
         return $db->query($sql, static::class);
     }
