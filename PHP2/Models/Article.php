@@ -1,6 +1,6 @@
 <?php
 
-namespace Models;
+namespace PHP2\Models;
 
 require_once __DIR__ . '/Db.php';
 require_once __DIR__ . '/Model.php';
