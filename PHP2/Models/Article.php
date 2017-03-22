@@ -2,9 +2,7 @@
 
 namespace PHP2\Models;
 
-require_once __DIR__ . '/Db.php';
-require_once __DIR__ . '/Model.php';
-
+require_once __DIR__ . '/../../autoload.php';
 
 
 class Article
@@ -16,10 +14,10 @@ class Article
     public $title;
     public $lead;
 
-    public function getNews($countNews)
+    public function getNews($quantityNews)
     {
         $db = new Db();
-        $sql = 'SELECT * FROM ' . static::TABLE . ' ORDER BY id DESC LIMIT ' . $countNews;
+        $sql = 'SELECT * FROM ' . static::TABLE . ' ORDER BY id DESC LIMIT ' . $quantityNews;
         return $db->query($sql, static::class);
     }
 

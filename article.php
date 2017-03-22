@@ -1,5 +1,6 @@
 <?php
-require_once __DIR__ . '/PHP2/Models/Article.php';
+
+require_once __DIR__ . '/autoload.php';
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
