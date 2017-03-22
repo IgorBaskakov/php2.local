@@ -16,4 +16,11 @@ class Article
     public $title;
     public $lead;
 
+    public function getNews($countNews)
+    {
+        $db = new Db();
+        $sql = 'SELECT * FROM ' . static::TABLE . ' ORDER BY id DESC LIMIT ' . $countNews;
+        return $db->query($sql, static::class);
+    }
+
 }

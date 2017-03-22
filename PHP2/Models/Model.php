@@ -15,10 +15,10 @@ abstract class Model
         return $db->query($sql, static::class);
     }
 
-    public static function findById($id)
+    public static function findById(int $id = null)
     {
         $db = new \PHP2\Models\Db;
         $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=:id';
-        return $db->query($sql, static::class, [':id' => $id])?:false;
+        return $db->query($sql, static::class, [':id' => $id])[0]?:false;
     }
 }
