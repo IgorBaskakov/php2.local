@@ -1,9 +1,7 @@
 <?php
 require_once __DIR__ . '/autoload.php';
 
-$article = new \PHP2\Models\Article();
 $quantityNews = 3;
-
-$news = $article->getNews($quantityNews);
+$news = \PHP2\Models\Article::getLastNews($quantityNews);
 
 include __DIR__ . '/templates/index.php';

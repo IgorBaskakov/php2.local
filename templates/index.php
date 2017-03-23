@@ -16,11 +16,11 @@
 <body>
 <h1>Новостная лента</h1>
 <hr>
-<?php foreach ($news as $article) {?>
+<?php foreach ($news as $article):?>
     <a href="/article.php?id=<?= $article->id; ?>"><h3><?= $article->title; ?></h3></a>
     <article>
         <?= $article->lead; ?>
     </article>
-<?php }?>
+<?php endforeach; ?>
 </body>
 </html>

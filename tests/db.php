@@ -1,9 +1,8 @@
 <?php
 
-require_once __DIR__ . '/../PHP2/Models/Db.php';
-require_once __DIR__ . '/../PHP2/Models/Article.php';
+require_once __DIR__ . '/../autoload.php';
 
-$db = new \PHP2\Models\Db;
+$db = new \PHP2\Db;
 
 $data1 = $db->query('SELECT title FROM news', \PHP2\Models\Article::class);
 $data2 = $db->query('SELECT titl FROM news', \PHP2\Models\Article::class);
@@ -18,12 +17,9 @@ $res2 = $db->execute('
     [':id' => 1, ':title' => 'У Марса обнаружили исчезающие спутники']
 );
 
-
 assert(true === is_object($db));
 assert(true === is_array($data1));
 assert(false === $data2);
 assert(true === is_object($data1[0]));
 assert(true === $res1);
 assert(false === $res2);
-
-

@@ -14,9 +14,9 @@ class Article
     public $title;
     public $lead;
 
-    public function getNews($quantityNews)
+    public static function getLastNews($quantityNews)
     {
-        $db = new Db();
+        $db = new \PHP2\Db;
         $sql = 'SELECT * FROM ' . static::TABLE . ' ORDER BY id DESC LIMIT ' . $quantityNews;
         return $db->query($sql, static::class);
     }

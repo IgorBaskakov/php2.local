@@ -1,12 +1,11 @@
 <?php
 
-namespace PHP2\Models;
+namespace PHP2;
 
 class Db
 {
 
     protected $dbh;
-    protected $sth;
 
     public function __construct()
     {
@@ -15,18 +14,18 @@ class Db
 
     public function query(string $sql, string $class, array $params = [])
     {
-        $res = $this->execute($sql, $params);
+        $sth = $this->dbh->prepare($sql);
+        $res = $sth->execute($params);
         if ($res) {
-            return $this->sth->fetchAll(\PDO::FETCH_CLASS, $class);
+            return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
         } else {
             return false;
         }
     }
 
-    public function execute($query, $params = [])
+    public function execute(string $query, array $params = [])
     {
-        $this->sth = $this->dbh->prepare($query);
-        return $this->sth->execute($params);
+        $sth = $this->dbh->prepare($query);
+        return $sth->execute($params);
     }
-
 }
