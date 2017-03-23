@@ -19,6 +19,7 @@ abstract class Model
     {
         $db = new \PHP2\Models\Db;
         $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=:id';
-        return $db->query($sql, static::class, [':id' => $id])[0]?:false;
+        $res = $db->query($sql, static::class, [':id' => $id]);
+        return ((false !== $res) && (0 !== count($res)))? $res[0] : false;
     }
 }
