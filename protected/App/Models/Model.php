@@ -65,6 +65,18 @@ VALUES (' . implode(', ', $params) . ')
 
     public function save()
     {
+        if (isset($this->id)) {
+            $this->update();
+        } else {
+            $this->insert();
+        }
+    }
 
+    public function delete()
+    {
+        $sql = 'DELETE FROM ' . static::TABLE . ' WHERE id = :id';
+        $data = [':id' => $this->id];
+        $db = Db::instance();
+        $db->execute($sql, $data);
     }
 }
