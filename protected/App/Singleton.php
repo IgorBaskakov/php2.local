@@ -1,5 +1,7 @@
 <?php
 
+namespace App;
+
 trait Singleton
 {
     protected static $instance = null;
@@ -14,14 +16,6 @@ trait Singleton
             static::$instance = new static;
         }
         return static::$instance;
-    }
-
-    private function __clone()
-    {
-    }
-
-    private function __wakeup()
-    {
     }
 
 }

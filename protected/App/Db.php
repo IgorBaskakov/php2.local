@@ -1,5 +1,6 @@
 <?php
 
+namespace App;
 
 class Db
 {
@@ -16,7 +17,7 @@ class Db
     {
         $sth = $this->dbh->prepare($sql);
         $res = $sth->execute($params);
-        if ($res) {
+        if (true === $res) {
             return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
         } else {
             return false;

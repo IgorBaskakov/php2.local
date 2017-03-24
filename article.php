@@ -8,6 +8,6 @@ if (isset($_GET['id'])) {
     $id = null;
 }
 
-$article = \Models\Article::findById($id);
+$article = \App\Models\Article::findById($id);
 
 include __DIR__ . '/templates/article.php';
