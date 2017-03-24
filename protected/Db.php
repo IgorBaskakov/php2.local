@@ -1,18 +1,18 @@
 <?php
 
-namespace PHP2;
 
 class Db
 {
+    use Singleton;
 
     protected $dbh;
 
-    public function __construct()
+    protected function __construct()
     {
         $this->dbh = new \PDO('mysql:host=localhost;dbname=php2', 'root', '');
     }
 
-    public function query(string $sql, string $class, array $params = [])
+    public function query(string $sql, string $class = \stdClass::class, array $params = [])
     {
         $sth = $this->dbh->prepare($sql);
         $res = $sth->execute($params);

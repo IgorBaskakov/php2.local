@@ -1,8 +1,10 @@
 <?php
 
-require_once __DIR__ . '/autoload.php';
+use Models\HasPrice;
 
-//$data = \PHP2\Models\Article::findAll();
-$data = \PHP2\Models\Article::findById();
+require_once __DIR__ . '/protected/autoload.php';
 
-var_dump($data);
+$article = new \Models\Article;
+$article->title = 'Новая новость';
+$article->lead = 'Случилось нечто хорошее!';
+$article->insert();

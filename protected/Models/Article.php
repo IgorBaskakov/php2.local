@@ -1,8 +1,8 @@
 <?php
 
-namespace PHP2\Models;
+namespace Models;
 
-require_once __DIR__ . '/../../autoload.php';
+require_once __DIR__ . '/../autoload.php';
 
 
 class Article
@@ -16,7 +16,7 @@ class Article
 
     public static function getLastNews($quantityNews)
     {
-        $db = new \PHP2\Db;
+        $db = \Db::instance();
         $sql = 'SELECT * FROM ' . static::TABLE . ' ORDER BY id DESC LIMIT ' . $quantityNews;
         return $db->query($sql, static::class);
     }

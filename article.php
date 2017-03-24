@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/autoload.php';
+require_once __DIR__ . '/protected/autoload.php';
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -8,6 +8,6 @@ if (isset($_GET['id'])) {
     $id = null;
 }
 
-$article = \PHP2\Models\Article::findById($id);
+$article = \Models\Article::findById($id);
 
 include __DIR__ . '/templates/article.php';
