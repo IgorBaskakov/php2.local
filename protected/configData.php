@@ -1,8 +1,9 @@
 <?php
 
 return [
-    'php2' => [
+    'db' => [
         'host' => 'localhost',
+        'dbname' => 'php2',
         'login' => 'root',
         'password' => ''
     ]

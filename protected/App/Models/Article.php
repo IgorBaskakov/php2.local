@@ -14,11 +14,4 @@ class Article
     public $title;
     public $lead;
 
-    public static function getLastNews($quantityNews)
-    {
-        $db = \App\Db::instance();
-        $sql = 'SELECT * FROM ' . static::TABLE . ' ORDER BY id DESC LIMIT ' . $quantityNews;
-        return $db->query($sql, static::class);
-    }
-
 }

@@ -10,23 +10,25 @@ class Db
 
     protected function __construct()
     {
-        $this->dbh = new \PDO('mysql:host=localhost;dbname=php2', 'root', '');
+        $config = Config::instance();
+        $data = $config->data['db'];
+        $this->dbh = new \PDO(
+            'mysql:host=' . $data['host'] . ';dbname=' . $data['dbname'],
+            $data['login'],
+            $data['password']
+        );
     }
 
     public function query(string $sql, string $class = \stdClass::class, array $params = [])
     {
         $sth = $this->dbh->prepare($sql);
         $res = $sth->execute($params);
-        if (true === $res) {
-            return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
-        } else {
-            return false;
-        }
+        return (true === $res) ? $sth->fetchAll(\PDO::FETCH_CLASS, $class) : false;
     }
 
-    public function execute(string $query, array $params = [])
+    public function execute(string $sql, array $params = [])
     {
-        $sth = $this->dbh->prepare($query);
+        $sth = $this->dbh->prepare($sql);
         return $sth->execute($params);
     }
 }

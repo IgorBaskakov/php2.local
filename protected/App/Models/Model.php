@@ -25,8 +25,17 @@ abstract class Model
         return ((false !== $res) && (0 !== count($res)))? $res[0] : false;
     }
 
+    public static function findLatest(int $quantity = 1)
+    {
+        $db = Db::instance();
+        $sql = 'SELECT * FROM ' . static::TABLE . ' ORDER BY id DESC LIMIT ' . $quantity;
+        return (1 === $quantity) ? $db->query($sql, static::class)[0] : $db->query($sql, static::class);
+    }
+
     public function insert()
     {
+        // get_object_vars($this) - вернет ассоциативный массив свойств объекта.
+        // Это лишнее действие, т.к. foreach можно применить к текущему объекту.
         // @todo: изучить! var_dump(get_object_vars($this));
         $columns = [];
         $params = [];
@@ -45,31 +54,32 @@ VALUES (' . implode(', ', $params) . ')
         ';
         $db = Db::instance();
         $db->execute($sql, $data);
+        $this->id = static::findLatest()->id;
     }
 
     public function update()
     {
         $data = [];
-        $sql = 'UPDATE ' . static::TABLE . ' SET ';
+        $columns = [];
         foreach ($this as $name => $value) {
-            if ('id' != $name) {
-                $sql .= $name . ' = :' . $name . ', ';
-            }
             $data[':' . $name] = $value;
+            if ('id' == $name) {
+                 continue;
+            }
+            $columns[] = $name .  ' = :' . $name;
         }
-        $sql = mb_substr($sql, 0, mb_strlen($sql) - 2);
-        $sql .= ' WHERE id = :id';
+        $sql = '
+UPDATE ' . static::TABLE . ' 
+SET ' . implode(', ', $columns) . ' 
+WHERE id = :id
+        ';
         $db = Db::instance();
         $db->execute($sql, $data);
     }
 
     public function save()
     {
-        if (isset($this->id)) {
-            $this->update();
-        } else {
-            $this->insert();
-        }
+        (isset($this->id)) ? $this->update() : $this->insert();
     }
 
     public function delete()

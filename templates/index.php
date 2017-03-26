@@ -11,10 +11,17 @@
         h1, h3 {
             text-align: center;
         }
+        .admin {
+            text-align: right;
+        }
     </style>
 </head>
 <body>
 <h1>Новостная лента</h1>
+<hr>
+<div class="admin">
+    <a href="/admin/index.php"><button>Админ-панель</button></a>
+</div>
 <hr>
 <?php foreach ($news as $article):?>
     <a href="/article.php?id=<?= $article->id; ?>"><h3><?= $article->title; ?></h3></a>
