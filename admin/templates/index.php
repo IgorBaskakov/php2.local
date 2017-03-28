@@ -31,9 +31,6 @@
         .admin {
             text-align: right;
         }
-        .hidden {
-
-        }
     </style>
 </head>
 <body>
@@ -52,7 +49,7 @@
         <textarea name="lead" class='lead'></textarea>
     </article>
     <div class="buttons">
-        <input type="submit" name="add" value="Добавить">
+        <input type="submit" name="insert" value="Добавить">
     </div>
 </form>
 <hr>
@@ -68,7 +65,7 @@
     </article>
 
     <div class="buttons">
-        <input type="submit" name="edit" value="Редактировать">
+        <input type="submit" name="update" value="Редактировать">
         <input type="submit" name="delete" value="Удалить">
     </div>
     <hr>

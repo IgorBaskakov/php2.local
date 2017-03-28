@@ -79,7 +79,11 @@ WHERE id = :id
 
     public function save()
     {
-        (isset($this->id)) ? $this->update() : $this->insert();
+        if (isset($this->id)) {
+            $this->update();
+        } else {
+            $this->insert();
+        }
     }
 
     public function delete()

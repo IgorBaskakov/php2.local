@@ -1,18 +1,12 @@
 <?php
 require_once __DIR__ . '/../protected/autoload.php';
 
-$article = new \App\Models\Article();
-$article->id = null;
-
-if (isset($_POST['id'])) {
-    $article->id = $_POST['id'];
-}
-if (isset($_POST['add']) || isset($_POST['edit'])) {
-    $article->title = $_POST['title'];
-    $article->lead = $_POST['lead'];
-    $article->save();
+if (isset($_POST['insert'])) {
+    include_once __DIR__ . '/insert.php';
+} elseif (isset($_POST['update'])) {
+    include_once __DIR__ . '/update.php';
 } elseif (isset($_POST['delete'])) {
-    $article->delete();
+    include_once __DIR__ . '/delete.php';
 }
 
 $quantityNews = 10;
