@@ -11,9 +11,5 @@ $article->lead = 'Здесь должно быть содержание ново
 
 //$article->insert();
 //$article->update();
-$article->save();
+//$article->save();
 //$article->delete();
-
-/*
- * Тестируем теги
- */

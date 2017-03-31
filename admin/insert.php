@@ -8,3 +8,5 @@ if (isset($_POST['title']) && isset($_POST['lead']) && !isset($_POST['id'])) {
     $article->lead = $_POST['lead'];
     $article->save();
 }
+
+header('Location: /admin/index.php');

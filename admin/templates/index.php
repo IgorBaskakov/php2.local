@@ -40,7 +40,7 @@
     <a href="/index.php"><button>Выйти из админ-панели</button></a>
 </div>
 <hr>
-<form action="/admin/index.php" method="post">
+<form action="/admin/insert.php" method="post">
     <em><label>Добавить новость:</label></em>
     <div>
         <input type="text" name="title" class='title'>
@@ -55,7 +55,7 @@
 <hr>
 <em><label>Список новостей:</label></em>
 <?php foreach ($news as $article):?>
-<form action="/admin/index.php" method="post">
+<form action="/admin/update.php" method="post">
     <div>
         <input type="text" name="id" class="id" readonly value="<?= $article->id; ?>">
         <input type="text" name="title" class='title' value="<?= $article->title; ?>">
@@ -63,14 +63,10 @@
     <article>
         <textarea name="lead" class='lead'><?= $article->lead; ?></textarea>
     </article>
-
-    <div class="buttons">
-        <input type="submit" name="update" value="Редактировать">
-        <input type="submit" name="delete" value="Удалить">
-    </div>
-    <hr>
+    <input type="submit" name="update" value="Редактировать">
 </form>
+    <a href="/admin/delete.php?id=<?= $article->id; ?>"><button>Удалить</button></a>
+<hr>
 <?php endforeach; ?>
-</form>
 </body>
 </html>
