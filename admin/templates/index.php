@@ -1,5 +1,10 @@
-<html>
+<!doctype html>
+<html lang="ru">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Новостная лента</title>
     <style>
         h1 {
@@ -34,39 +39,59 @@
     </style>
 </head>
 <body>
-<h1>Админская панель</h1>
-<hr>
-<div class="admin">
-    <a href="/index.php"><button>Выйти из админ-панели</button></a>
-</div>
-<hr>
-<form action="/admin/insert.php" method="post">
-    <em><label>Добавить новость:</label></em>
-    <div>
-        <input type="text" name="title" class='title'>
+
+    <h1>Админская панель</h1>
+    <hr>
+    <div class="admin">
+        <a href="/index.php"><button>Выйти из админ-панели</button></a>
     </div>
-    <article>
-        <textarea name="lead" class='lead'></textarea>
-    </article>
-    <div class="buttons">
-        <input type="submit" name="insert" value="Добавить">
-    </div>
-</form>
-<hr>
-<em><label>Список новостей:</label></em>
-<?php foreach ($news as $article):?>
-<form action="/admin/update.php" method="post">
-    <div>
-        <input type="text" name="id" class="id" readonly value="<?= $article->id; ?>">
-        <input type="text" name="title" class='title' value="<?= $article->title; ?>">
-    </div>
-    <article>
-        <textarea name="lead" class='lead'><?= $article->lead; ?></textarea>
-    </article>
-    <input type="submit" name="update" value="Редактировать">
-</form>
-    <a href="/admin/delete.php?id=<?= $article->id; ?>"><button>Удалить</button></a>
-<hr>
-<?php endforeach; ?>
+    <hr>
+
+    <form action="/admin/insert.php" method="post">
+        <article>
+            <h2>Добавить новость:</h2>
+            <div>
+                <input type="text" name="title" class='title'>
+            </div>
+            <div>
+                <textarea name="lead" class='lead'></textarea>
+            </div>
+            <div class="buttons">
+                <input type="submit" name="insert" value="Добавить">
+            </div>
+        </article>
+    </form>
+
+    <hr>
+    <h2>Список новостей:</h2>
+    <?php foreach ($this->news as $article) : ?>
+    <form action="/admin/update.php" method="post">
+        <article>
+            <div>
+                <input type="text" name="id" class="id" readonly value="<?php echo $article->id; ?>">
+                <input type="text" name="title" class='title' value="<?php echo $article->title; ?>">
+            </div>
+            <div>
+                <textarea name="lead" class='lead'><?php echo $article->lead; ?></textarea>
+                <br>
+                <div>
+                    <strong>
+                        <em>
+                            <?php if (isset($article->author)) : ?>
+                                Автор:
+                                <?php echo $article->author->name;
+                            endif; ?>
+                        </em>
+                    </strong>
+                </div>
+                <br>
+            </div>
+            <input type="submit" name="update" value="Редактировать">
+        </article>
+    </form>
+        <a href="/admin/delete.php?id=<?php echo $article->id; ?>"><button>Удалить</button></a>
+    <hr>
+    <?php endforeach; ?>
+
 </body>
 </html>

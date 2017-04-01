@@ -8,6 +8,6 @@ if (isset($_GET['id'])) {
     $id = null;
 }
 
-$article = \App\Models\Article::findById($id);
-
-include __DIR__ . '/templates/article.php';
+$view = new \App\View;
+$view->article = \App\Models\Article::findById($id);
+$view->display(__DIR__ . '/templates/article.php');

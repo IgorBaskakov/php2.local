@@ -2,12 +2,23 @@
 
 namespace App;
 
+require_once __DIR__ . '/../autoload.php';
+
+/**
+ * Class Db
+ * @package App
+ */
 class Db
 {
     use Singleton;
 
+    /** @var \PDO Should contatin a dbh */
     protected $dbh;
 
+    /**
+     * Db constructor.
+     * @return void
+     */
     protected function __construct()
     {
         $config = Config::instance();
@@ -19,6 +30,12 @@ class Db
         );
     }
 
+    /**
+     * @param string $sql
+     * @param string $class
+     * @param array $params
+     * @return array|bool
+     */
     public function query(string $sql, string $class = \stdClass::class, array $params = [])
     {
         $sth = $this->dbh->prepare($sql);
@@ -26,14 +43,23 @@ class Db
         return (true === $res) ? $sth->fetchAll(\PDO::FETCH_CLASS, $class) : false;
     }
 
+    /**
+     * @param string $sql
+     * @param array $params
+     * @return bool
+     */
     public function execute(string $sql, array $params = [])
     {
         $sth = $this->dbh->prepare($sql);
         return $sth->execute($params);
     }
 
+    /**
+     * @return string
+     */
     public function getLastInsertId()
     {
         return $this->dbh->lastInsertId();
     }
+
 }

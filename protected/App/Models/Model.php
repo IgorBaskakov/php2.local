@@ -4,12 +4,20 @@ namespace App\Models;
 
 use App\Db;
 
+/**
+ * Class Model
+ * @package App\Models
+ * @property int $id
+ */
 abstract class Model
 {
     protected const TABLE = null;
 
     public $id;
 
+    /**
+     * @return array|bool
+     */
     public static function findAll()
     {
         $db = Db::instance();
@@ -17,6 +25,10 @@ abstract class Model
         return $db->query($sql, static::class);
     }
 
+    /**
+     * @param int|null $id
+     * @return object|bool
+     */
     public static function findById(int $id = null)
     {
         $db = Db::instance();
@@ -25,6 +37,10 @@ abstract class Model
         return ((false !== $res) && (0 !== count($res)))? $res[0] : false;
     }
 
+    /**
+     * @param int $quantity
+     * @return object|array
+     */
     public static function findLatest(int $quantity = 1)
     {
         $db = Db::instance();
@@ -32,11 +48,11 @@ abstract class Model
         return (1 === $quantity) ? $db->query($sql, static::class)[0] : $db->query($sql, static::class);
     }
 
+    /**
+     * @return void
+     */
     public function insert()
     {
-        // get_object_vars($this) - вернет ассоциативный массив свойств объекта.
-        // Это лишнее действие, т.к. foreach можно применить к текущему объекту.
-        // @todo: изучить! var_dump(get_object_vars($this));
         $columns = [];
         $params = [];
         $data = [];
@@ -57,6 +73,9 @@ VALUES (' . implode(', ', $params) . ')
         $this->id = (int)$db->getLastInsertId();
     }
 
+    /**
+     * @return void
+     */
     public function update()
     {
         $data = [];
@@ -77,6 +96,9 @@ WHERE id = :id
         $db->execute($sql, $data);
     }
 
+    /**
+     * @return void
+     */
     public function save()
     {
         if (isset($this->id)) {
@@ -86,6 +108,9 @@ WHERE id = :id
         }
     }
 
+    /**
+     * @return void
+     */
     public function delete()
     {
         $sql = 'DELETE FROM ' . static::TABLE . ' WHERE id = :id';
@@ -93,4 +118,5 @@ WHERE id = :id
         $db = Db::instance();
         $db->execute($sql, $data);
     }
+
 }

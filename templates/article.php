@@ -1,8 +1,13 @@
-<html>
+<!doctype html>
+<html lang="ru">
 <head>
-    <title><?= $article->title; ?></title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><?php echo $article->title; ?></title>
     <style>
-        article {
+        .lead {
             margin: 10px auto 5px;
             padding: 5px;
             width: 70%;
@@ -19,16 +24,35 @@
             padding: 10px;
             text-align: right;
         }
-
     </style>
 </head>
 <body>
-<h1><?= $article->title; ?></h1>
-<article>
-    <?= $article->lead; ?>
-</article>
-<div class="back">
-    <a href="/index.php"><button>Назад</button></a>
-</div>
+
+    <section>
+        <article>
+            <h1><?php echo $this->article->title; ?></h1>
+            <div class="lead">
+                <?php echo $this->article->lead; ?>
+                <br>
+                <br>
+                <div>
+                    <strong>
+                        <em>
+                            <?php if (isset($this->article->author)) : ?>
+                                Автор:
+                                <?php echo $this->article->author->name;
+                            endif; ?>
+                        </em>
+                    </strong>
+                </div>
+            </div>
+            <div class="back">
+                <a href="/index.php">
+                    <button>Назад</button>
+                </a>
+            </div>
+        </article>
+    </section>
+
 </body>
 </html>
