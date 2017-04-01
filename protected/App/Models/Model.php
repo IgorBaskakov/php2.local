@@ -54,7 +54,7 @@ VALUES (' . implode(', ', $params) . ')
         ';
         $db = Db::instance();
         $db->execute($sql, $data);
-        $this->id = static::findLatest()->id;
+        $this->id = (int)$db->getLastInsertId();
     }
 
     public function update()
