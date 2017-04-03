@@ -40,16 +40,16 @@
                 <div class="lead">
                     <?php echo $item->lead; ?>
                     <br>
+                    <?php if (isset($item->author)) : ?>
                     <div>
                         <strong>
                             <em>
-                                <?php if (isset($item->author)) : ?>
-                                    Автор:
-                                    <?php echo $item->author->name;
-                                endif; ?>
+                                Автор:
+                                <?php echo $item->author->name; ?>
                             </em>
                         </strong>
                     </div>
+                    <?php endif; ?>
                 </div>
             <?php endforeach; ?>
         </article>

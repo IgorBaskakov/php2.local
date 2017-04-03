@@ -36,7 +36,7 @@ trait GetterSetter
      */
     public function __isset($name)
     {
-        return isset($this->data[$name]) ?: false;
+        return isset($this->data[$name]);
     }
 
 }

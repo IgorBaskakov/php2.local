@@ -77,7 +77,8 @@ class View implements
      */
     public function valid()
     {
-        return (null !== $this->key()) ? true : false;
+        $key = $this->key();
+        return isset($key);
     }
 
     /**

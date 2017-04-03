@@ -74,16 +74,16 @@
             <div>
                 <textarea name="lead" class='lead'><?php echo $article->lead; ?></textarea>
                 <br>
+                <?php if (isset($article->author)) : ?>
                 <div>
                     <strong>
                         <em>
-                            <?php if (isset($article->author)) : ?>
-                                Автор:
-                                <?php echo $article->author->name;
-                            endif; ?>
+                            Автор:
+                            <?php echo $article->author->name; ?>
                         </em>
                     </strong>
                 </div>
+                <?php endif; ?>
                 <br>
             </div>
             <input type="submit" name="update" value="Редактировать">

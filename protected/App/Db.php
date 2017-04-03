@@ -17,7 +17,6 @@ class Db
 
     /**
      * Db constructor.
-     * @return void
      */
     protected function __construct()
     {

@@ -15,7 +15,6 @@ class Config
 
     /**
      * Config constructor.
-     * @return void
      */
     protected function __construct()
     {

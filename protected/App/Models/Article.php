@@ -2,14 +2,19 @@
 
 namespace App\Models;
 
+use App\GetterSetter;
+
 require_once __DIR__ . '/../../autoload.php';
 
 /**
  * Class Article
  * @package App\Models
+ * @property string $title
+ * @property string $lead
  */
 class Article extends Model
 {
+    use GetterSetter;
 
     protected const TABLE = 'news';
 
@@ -25,7 +30,7 @@ class Article extends Model
      */
     public function __get($name)
     {
-        if ('author' == $name) {
+        if ('author' === $name) {
             if (isset($this->author_id)) {
                 return Author::findById($this->author_id);
             }
@@ -38,8 +43,8 @@ class Article extends Model
      */
     public function __isset($name)
     {
-        if ('author' == $name) {
-            return isset($this->author_id) ?: false;
+        if ('author' === $name) {
+            return isset($this->author_id);
         }
     }
 

@@ -35,16 +35,16 @@
                 <?php echo $this->article->lead; ?>
                 <br>
                 <br>
+                <?php if (isset($this->article->author)) : ?>
                 <div>
                     <strong>
                         <em>
-                            <?php if (isset($this->article->author)) : ?>
-                                Автор:
-                                <?php echo $this->article->author->name;
-                            endif; ?>
+                            Автор:
+                            <?php echo $this->article->author->name; ?>
                         </em>
                     </strong>
                 </div>
+                <?php endif; ?>
             </div>
             <div class="back">
                 <a href="/index.php">
