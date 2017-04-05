@@ -46,7 +46,7 @@
                 <?php endif; ?>
             </div>
             <div class="back">
-                <a href="/index.php">
+                <a href="/Index/Default">
                     <button>Назад</button>
                 </a>
             </div>

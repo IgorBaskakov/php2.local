@@ -1,22 +1,11 @@
 <?php
 
-$uri = $_SERVER['REQUEST_URI'];
-$parts = explode('/', $uri);
-
 require_once __DIR__ . '/protected/autoload.php';
 
-if (!empty($parts[1])) {
-    $controllerName = $parts[1];
-} else {
-    $controllerName = 'Index';
-}
+$request = new \App\Request;
+$result = $request->parsing($_SERVER['REQUEST_URI']);
 
-$controllerClassName = '\\App\\Controllers\\' . $controllerName;
+$controllerName = $result['ctrl'];
+$controllerClassName = '\\App' . $controllerName;
 $controller = new $controllerClassName;
-
-if (!empty($parts[2])) {
-    $controller->action($parts[2]);
-} else {
-    $controller->action('Default');
-}
-
+$controller->action($result['act']);

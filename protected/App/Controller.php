@@ -2,31 +2,55 @@
 
 namespace App;
 
-
+/**
+ * Class Controller
+ * @package App
+ */
 abstract class Controller
 {
 
+    /** @var object Should contatin a view */
     protected $view;
 
+    /**
+     * Controller constructor.
+     */
     public function __construct()
     {
         $this->view = new \App\View;
     }
 
+    /**
+     * @param $action
+     * @return bool
+     */
     protected function access($action)
     {
         return true;
     }
 
-    public function action($name)
+    /**
+     * @param string $action
+     * @return void
+     */
+    public function action($action)
     {
-
-        if ($this->access($name)) {
-            $name = 'action' . $name;
-            $this->$name();
+        if ($this->access($action)) {
+            $action = 'action' . $action;
+            $this->$action();
         } else {
-            die('Access denied!');
+            die('Доступ закрыт!');
         }
+    }
+
+    /**
+     * @param $name
+     * @param $arguments
+     * @return void
+     */
+    public function __call($name, $arguments)
+    {
+        die('Запрашиваемый ресурс не найден!');
     }
 
 }

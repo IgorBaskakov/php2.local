@@ -58,7 +58,7 @@ abstract class Model
         $params = [];
         $data = [];
         foreach ($this as $name => $value) {
-            if ('id' == $name) {
+            if (('id' == $name) || ('data' == $name)) {
                 continue;
             }
             $columns[] = $name;
@@ -82,6 +82,9 @@ VALUES (' . implode(', ', $params) . ')
         $data = [];
         $columns = [];
         foreach ($this as $name => $value) {
+            if ('data' == $name) {
+                continue;
+            }
             $data[':' . $name] = $value;
             if ('id' == $name) {
                  continue;

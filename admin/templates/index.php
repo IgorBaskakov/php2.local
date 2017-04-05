@@ -43,11 +43,11 @@
     <h1>Админская панель</h1>
     <hr>
     <div class="admin">
-        <a href="/index.php"><button>Выйти из админ-панели</button></a>
+        <a href="/Index/"><button>Выйти из админ-панели</button></a>
     </div>
     <hr>
 
-    <form action="/admin/insert.php" method="post">
+    <form action="/admin/Editing/Edit" method="post">
         <article>
             <h2>Добавить новость:</h2>
             <div>
@@ -64,8 +64,8 @@
 
     <hr>
     <h2>Список новостей:</h2>
-    <?php foreach ($this->news as $article) : ?>
-    <form action="/admin/update.php" method="post">
+    <?php foreach ($news as $article) : ?>
+    <form action="/admin/Editing/Edit" method="post">
         <article>
             <div>
                 <input type="text" name="id" class="id" readonly value="<?php echo $article->id; ?>">
@@ -89,7 +89,7 @@
             <input type="submit" name="update" value="Редактировать">
         </article>
     </form>
-        <a href="/admin/delete.php?id=<?php echo $article->id; ?>"><button>Удалить</button></a>
+        <a href="/admin/Editing/Delete/?id=<?php echo $article->id; ?>"><button>Удалить</button></a>
     <hr>
     <?php endforeach; ?>
 

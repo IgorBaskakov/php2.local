@@ -28,13 +28,13 @@
             <h1>Новостная лента</h1>
             <hr>
             <div class="admin">
-                <a href="/admin/index.php">
+                <a href="/admin/Index/Default">
                     <button>Админ-панель</button>
                 </a>
             </div>
             <hr>
             <?php foreach ($articles as $item) : ?>
-                <a href="/article.php?id=<?php echo $item->id; ?>">
+                <a href="/News/One/?id=<?php echo $item->id; ?>">
                     <h3><?php echo $item->title; ?></h3>
                 </a>
                 <div class="lead">
