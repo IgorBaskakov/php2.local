@@ -10,8 +10,7 @@
 <body>
 
     <section>
-        <?php var_dump($this); ?>
-        <?php foreach($this->articles as $item) : ?>
+        <?php foreach(articles as $item) : ?>
         <article>
             <h2><?php echo $item->title; ?></h2>
             <div><?php echo $item->lead; ?></div>

@@ -63,7 +63,7 @@ class Editing extends Controller
      */
     protected function afterAction()
     {
-        header('Location: /Admin/Index/');
+        header('Location: /admin/Index/Default');
     }
 
 }

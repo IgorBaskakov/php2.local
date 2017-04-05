@@ -50,7 +50,8 @@ abstract class Controller
      */
     public function __call($name, $arguments)
     {
-        die('Запрашиваемый ресурс не найден!');
+        $this->view->message = 'Ошибка 404! Страница не найдена!';
+        $this->view->display(__DIR__ . '/../../templates/error.php');
     }
 
 }

@@ -10,6 +10,7 @@ use App\Controller;
  */
 class Index extends Controller
 {
+
     /**
      * @return void
      */

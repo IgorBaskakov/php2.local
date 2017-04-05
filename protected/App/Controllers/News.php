@@ -15,10 +15,11 @@ class News extends Controller
      */
     protected function actionOne()
     {
-        $this->view->item = \App\Models\Article::findById($_GET['id']);
+        $this->view->item = \App\Models\Article::findById($_GET['id'] ?? null);
         if (false !== $this->view->item) {
             $this->view->display(__DIR__ . '/../../../templates/one.php');
         } else {
+            $this->view->message = 'Ошибка 404! Страница не найдена!';
             $this->view->display(__DIR__ . '/../../../templates/error.php');
         }
     }

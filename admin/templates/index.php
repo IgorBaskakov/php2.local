@@ -43,7 +43,7 @@
     <h1>Админская панель</h1>
     <hr>
     <div class="admin">
-        <a href="/Index/"><button>Выйти из админ-панели</button></a>
+        <a href="/Index/Default"><button>Выйти из админ-панели</button></a>
     </div>
     <hr>
 
