@@ -1,14 +1,22 @@
 <?php
 
+$uri = $_SERVER['REQUEST_URI'];
+$parts = explode('/', $uri);
+
 require_once __DIR__ . '/protected/autoload.php';
 
-$quantityNews = 3;
+if (!empty($parts[1])) {
+    $controllerName = $parts[1];
+} else {
+    $controllerName = 'Index';
+}
 
+$controllerClassName = '\\App\\Controllers\\' . $controllerName;
+$controller = new $controllerClassName;
 
-$view = new \App\View();
-$view->articles = \App\Models\Article::findAll();
-$view->foo = 'bar';
-$view->baz = 42;
+if (!empty($parts[2])) {
+    $controller->action($parts[2]);
+} else {
+    $controller->action('Default');
+}
 
-//$view->display(__DIR__ . '/templates/test.php');
-$view->display(__DIR__ . '/templates/index.php');

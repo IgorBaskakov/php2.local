@@ -33,7 +33,7 @@
                 </a>
             </div>
             <hr>
-            <?php foreach ($this->articles as $item) : ?>
+            <?php foreach ($articles as $item) : ?>
                 <a href="/article.php?id=<?php echo $item->id; ?>">
                     <h3><?php echo $item->title; ?></h3>
                 </a>

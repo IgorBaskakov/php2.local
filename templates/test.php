@@ -10,6 +10,7 @@
 <body>
 
     <section>
+        <?php var_dump($this); ?>
         <?php foreach($this->articles as $item) : ?>
         <article>
             <h2><?php echo $item->title; ?></h2>

@@ -9,4 +9,4 @@ if (isset($_POST['title']) && isset($_POST['lead']) && !isset($_POST['id'])) {
     $article->save();
 }
 
-header('Location: /admin/index.php');
+header('Location: /admin/default.php');

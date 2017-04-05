@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?php echo $article->title; ?></title>
+    <title><?php echo $item->title; ?></title>
     <style>
         .lead {
             margin: 10px auto 5px;
@@ -28,19 +28,18 @@
 </head>
 <body>
 
-    <section>
         <article>
-            <h1><?php echo $this->article->title; ?></h1>
+            <h1><?php echo $item->title; ?></h1>
             <div class="lead">
-                <?php echo $this->article->lead; ?>
+                <?php echo $item->lead; ?>
                 <br>
                 <br>
-                <?php if (isset($this->article->author)) : ?>
+                <?php if (isset($item->author)) : ?>
                 <div>
                     <strong>
                         <em>
                             Автор:
-                            <?php echo $this->article->author->name; ?>
+                            <?php echo $item->author->name; ?>
                         </em>
                     </strong>
                 </div>
@@ -52,7 +51,6 @@
                 </a>
             </div>
         </article>
-    </section>
 
 </body>
 </html>

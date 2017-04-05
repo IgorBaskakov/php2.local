@@ -7,8 +7,7 @@ $article->title = 'Еще одна новость';
 $article->lead = 'Здесь должно быть содержание новости';
 //$article->id = 11;
 
-$article->insert();
+//$article->insert();
 //$article->update();
-//$article->save();
+$article->save();
 //$article->delete();
-

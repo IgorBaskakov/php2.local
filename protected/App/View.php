@@ -25,6 +25,9 @@ class View implements
     public function render(string $template)
     {
         ob_start();
+        foreach ($this as $key => $val) {
+            $$key = $val;
+        }
         include $template;
         $content = ob_get_contents();
         ob_end_clean();
@@ -77,8 +80,7 @@ class View implements
      */
     public function valid()
     {
-        $key = $this->key();
-        return isset($key);
+        return null !== key($this->data);
     }
 
     /**

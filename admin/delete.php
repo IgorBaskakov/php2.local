@@ -8,5 +8,5 @@ if (isset($_GET['id'])) {
     $article->delete();
 }
 
-header('Location: /admin/index.php');
+header('Location: /admin/default.php');
 
