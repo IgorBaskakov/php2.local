@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Db;
+use App\MagicTrait;
 
 /**
  * Class Model
@@ -11,6 +12,9 @@ use App\Db;
  */
 abstract class Model
 {
+
+    use MagicTrait;
+
     protected const TABLE = null;
 
     public $id;
@@ -29,7 +33,7 @@ abstract class Model
      * @param int|null $id
      * @return object|bool
      */
-    public static function findById(int $id = null)
+    public static function findOneById(int $id = null)
     {
         $db = Db::instance();
         $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=:id';
@@ -58,7 +62,7 @@ abstract class Model
         $params = [];
         $data = [];
         foreach ($this as $name => $value) {
-            if (('id' == $name) || ('data' == $name)) {
+            if ('id' == $name) {
                 continue;
             }
             $columns[] = $name;
@@ -82,9 +86,11 @@ VALUES (' . implode(', ', $params) . ')
         $data = [];
         $columns = [];
         foreach ($this as $name => $value) {
+            /*
             if ('data' == $name) {
                 continue;
             }
+            */
             $data[':' . $name] = $value;
             if ('id' == $name) {
                  continue;

@@ -3,10 +3,10 @@
 namespace App;
 
 /**
- * Trait GetterSetter
+ * Trait MagicTrait
  * @package App
  */
-trait GetterSetter
+trait MagicTrait
 {
     /** @var array Should contain a data */
     protected $data;
@@ -37,6 +37,15 @@ trait GetterSetter
     public function __isset($name)
     {
         return isset($this->data[$name]);
+    }
+
+    /**
+     * @param string $name
+     * @return void
+     */
+    public function __unset($name)
+    {
+        unset($this->data[$name]);
     }
 
 }

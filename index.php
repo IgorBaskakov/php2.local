@@ -8,4 +8,12 @@ $result = $request->parsing($_SERVER['REQUEST_URI']);
 $controllerName = $result['ctrl'];
 $controllerClassName = '\\App' . $controllerName;
 $controller = new $controllerClassName;
-$controller->action($result['act']);
+
+
+try {
+
+    $controller->action($result['act']);
+
+} catch (Throwable $ex) {
+    echo 'Error: ' . $ex->getMessage();
+}

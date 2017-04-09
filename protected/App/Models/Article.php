@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\GetterSetter;
-
 require_once __DIR__ . '/../../autoload.php';
 
 /**
@@ -14,7 +12,6 @@ require_once __DIR__ . '/../../autoload.php';
  */
 class Article extends Model
 {
-    use GetterSetter;
 
     protected const TABLE = 'news';
 
@@ -32,7 +29,7 @@ class Article extends Model
     {
         if ('author' === $name) {
             if (isset($this->author_id)) {
-                return Author::findById($this->author_id);
+                return Author::findOneById($this->author_id);
             }
         }
     }

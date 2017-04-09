@@ -21,6 +21,7 @@ class Editing extends Controller
      */
     public function __construct()
     {
+        parent::__construct();
         $this->dataFromUser = new CheckDataFromUser;
     }
 
@@ -32,7 +33,7 @@ class Editing extends Controller
         $check = $this->dataFromUser->checkDataForEdit($_POST);
 
         if (true === $check) {
-            $article = Article::findById((int)$_POST['id']);
+            $article = Article::findOneById((int)$_POST['id']);
         } elseif ( false === $check) {
             $article = new Article;
         }
@@ -52,7 +53,7 @@ class Editing extends Controller
         $check = $this->dataFromUser->checkDataForDelete($_GET);
 
         if (true === $check) {
-            $article = Article::findById((int)$_GET['id']);
+            $article = Article::findOneById((int)$_GET['id']);
             $article->delete();
         }
         $this->afterAction();

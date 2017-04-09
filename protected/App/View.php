@@ -13,7 +13,7 @@ class View implements
     \Countable,
     \Iterator
 {
-    use GetterSetter;
+    use MagicTrait;
 
     /** @var array Should contain a data */
     protected $data;

@@ -2,12 +2,25 @@
 
 require_once __DIR__ . '/protected/autoload.php';
 
-$article = new \App\Models\Article;
-$article->title = 'Еще одна новость';
-$article->lead = 'Здесь должно быть содержание новости';
-//$article->id = 11;
+/*
+$ex = new Exception('Some happens!', 12);
 
-//$article->insert();
-//$article->update();
-$article->save();
-//$article->delete();
+var_dump( $ex->getCode() );
+*/
+
+try {
+
+    $obj = new \App\FluentClass;
+    $obj->fill([
+        'foo' => 1,
+        'bar' => -1,
+        'baz' => 0
+    ]);
+
+} catch (\App\Errors $errors) {
+    foreach ($errors as $error) {
+        echo $error->getMessage();
+    }
+}
+
+var_dump( $obj->getValues() );
