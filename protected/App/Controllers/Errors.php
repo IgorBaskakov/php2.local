@@ -25,7 +25,7 @@ class Errors extends Controller
     public function actionShowOtherErrors(\Throwable $error)
     {
         $this->view->error = $error;
-        $this->view->display(__DIR__ . '/../../../templates/error404.php');
+        $this->view->display(__DIR__ . '/../../../templates/otherErrors.php');
     }
 
 }

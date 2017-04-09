@@ -19,13 +19,13 @@
     <section>
         <h1>
             <?php
-                echo $error->getMessage();
+                echo $error->getMsg();
             ?>
         </h1>
         <div>
             <?php
                 if (11 == $error->getCode()) {
-                    echo $error->showMsg();
+                    echo 'Подождите немного и мы все исправим! :)';
                 }
             ?>
         </div>

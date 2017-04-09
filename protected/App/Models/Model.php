@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Db;
 use App\Error404;
+use App\Errors;
 use App\MagicTrait;
 
 /**
@@ -29,7 +30,7 @@ abstract class Model
         $sql = 'SELECT * FROM ' . static::TABLE;
         $res = $db->query($sql, static::class);
         if (false === $res) {
-            throw new Error404('Ошибка 404 - не найдено!');
+            throw new Error404('Отсутствуют ВСЕ данные');
         }
         return $res;
     }
@@ -44,7 +45,7 @@ abstract class Model
         $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=:id';
         $res = $db->query($sql, static::class, [':id' => $id]);
         if (empty($res)) {
-            throw new Error404('Ошибка 404 - не найдено!');
+            throw new Error404('Не найдена запись с указанным ID');
         }
         return $res ? $res[0] : false;
     }
@@ -69,7 +70,7 @@ abstract class Model
         $params = [];
         $data = [];
         foreach ($this as $name => $value) {
-            if ('id' == $name) {
+            if ('id' == $name || 'data' == $name) {
                 continue;
             }
             $columns[] = $name;
@@ -93,11 +94,9 @@ VALUES (' . implode(', ', $params) . ')
         $data = [];
         $columns = [];
         foreach ($this as $name => $value) {
-            /*
             if ('data' == $name) {
                 continue;
             }
-            */
             $data[':' . $name] = $value;
             if ('id' == $name) {
                  continue;
@@ -136,9 +135,39 @@ WHERE id = :id
         $db->execute($sql, $data);
     }
 
+    /**
+     * @param string $prop
+     * @param $val
+     * @throws \Exception
+     * @return void
+     */
+    public function setProp(string $prop, $val)
+    {
+        $this->$prop = $val;
+        if (!isset($this->$prop)) {
+            throw new \Exception('Свойство ' . $prop . ' отсутствует!');
+        }
+
+    }
+
+    /**
+     * @param array $data
+     * @throws Errors
+     * @return void
+     */
     public function fill(array $data)
     {
-        //$this->data =
+        $errors = new Errors;
+        foreach ($data as $key => $value) {
+            try {
+                $this->setProp($key, $value);
+            } catch (\Exception $e) {
+                $errors->add($e);
+            }
+        }
+        if (!empty($errors->getErrors())) {
+            throw $errors;
+        }
     }
 
 }

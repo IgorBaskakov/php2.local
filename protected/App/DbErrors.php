@@ -3,14 +3,27 @@
 namespace App;
 
 
+use Throwable;
+
+/**
+ * Class DbErrors
+ * @package App
+ */
 class DbErrors extends \PDOException
 {
 
-    protected $msg = 'Подождите немного и мы все исправим! :)';
+    use ErrorTrait;
 
-    public function showMsg()
+    /**
+     * DbErrors constructor.
+     * @param string $message
+     * @param int $code
+     * @param Throwable|null $previous
+     */
+    public function __construct($message = "", $code = 0, Throwable $previous = null)
     {
-        return $this->msg;
+        parent::__construct($message, $code, $previous);
+        $this->setMsg('Ошибка в работе с БД!');
     }
 
 }

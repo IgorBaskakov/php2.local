@@ -30,16 +30,16 @@ class Editing extends Controller
      */
     protected function actionEdit()
     {
-        $check = $this->dataFromUser->checkDataForEdit($_POST);
+        $checkedData = $this->dataFromUser->checkDataForEdit($_POST);
 
-        if (true === $check) {
+        if (true === $checkedData) {
             $article = Article::findOneById((int)$_POST['id']);
-        } elseif ( false === $check) {
+        } elseif (false === $checkedData) {
             $article = new Article;
         }
         $article->title = $_POST['title'];
         $article->lead = $_POST['lead'];
-        if (null !== $check) {
+        if (null !== $checkedData) {
             $article->save();
         }
         $this->afterAction();
@@ -50,9 +50,9 @@ class Editing extends Controller
      */
     protected function actionDelete()
     {
-        $check = $this->dataFromUser->checkDataForDelete($_GET);
+        $checkedData = $this->dataFromUser->checkDataForDelete($_GET);
 
-        if (true === $check) {
+        if (true === $checkedData) {
             $article = Article::findOneById((int)$_GET['id']);
             $article->delete();
         }

@@ -31,7 +31,7 @@ class Db
             );
             $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         } catch (\PDOException $e) {
-            throw new DbErrors('Ошибка! Что-то случилось!', 11);
+            throw new DbErrors('Ошибка подключения к БД', 11);
         }
     }
 
@@ -47,7 +47,7 @@ class Db
             $sth = $this->dbh->prepare($sql);
             $res = $sth->execute($params);
         } catch (\PDOException $e) {
-            throw new DbErrors('Ошибка! Нет данных!');
+            throw new DbErrors('Ошибка выполнения запроса с возвратом данных');
         }
         return (true === $res) ? $sth->fetchAll(\PDO::FETCH_CLASS, $class) : false;
     }
@@ -63,7 +63,7 @@ class Db
             $sth = $this->dbh->prepare($sql);
             return $sth->execute($params);
         } catch (\PDOException $e) {
-            throw new DbErrors('Ошибка! Операция не может быть выполнена!');
+            throw new DbErrors('Ошибка выполнения запроса');
         }
 
     }

@@ -46,6 +46,7 @@ abstract class Controller
     /**
      * @param $name
      * @param $arguments
+     * @throws Error404
      * @return void
      */
     public function __call($name, $arguments)

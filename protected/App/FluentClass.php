@@ -2,15 +2,26 @@
 
 namespace App;
 
-
+/**
+ * Class FluentClass
+ * @package App
+ */
 class FluentClass
 {
 
+    /** @var int Should contain a foo */
+    /** @var int Should contain a bar */
+    /** @var int Should contain a baz */
     protected $foo;
     protected $bar;
     protected $baz;
 
-    public function setFoo($value)
+    /**
+     * @param int $value
+     * @return $this
+     * @throws \Exception
+     */
+    public function setFoo(int $value)
     {
         if ($value <= 0) {
             throw new \Exception('Foo must be positive!');
@@ -19,8 +30,12 @@ class FluentClass
         return $this;
     }
 
-
-    public function setBar($value)
+    /**
+     * @param int $value
+     * @return $this
+     * @throws \Exception
+     */
+    public function setBar(int $value)
     {
         if ($value >= 0) {
             throw new \Exception('Bar must be negative!');
@@ -29,8 +44,12 @@ class FluentClass
         return $this;
     }
 
-
-    public function setBaz($value)
+    /**
+     * @param int $value
+     * @return $this
+     * @throws \Exception
+     */
+    public function setBaz(int $value)
     {
         if ($value !== 0) {
             throw new \Exception('Baz must be null!');
@@ -39,6 +58,9 @@ class FluentClass
         return $this;
     }
 
+    /**
+     * @return array
+     */
     public function getValues()
     {
         return [
@@ -48,6 +70,11 @@ class FluentClass
         ];
     }
 
+    /**
+     * @param array $data
+     * @throws Errors
+     * @return void
+     */
     public function fill(array $data)
     {
         $errors = new Errors;

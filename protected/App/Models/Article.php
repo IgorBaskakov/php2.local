@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\MagicTrait;
+
 require_once __DIR__ . '/../../autoload.php';
 
 /**
@@ -23,14 +25,21 @@ class Article extends Model
 
     /**
      * @param string $name
+     * @param mixed $value
+     * @return void
+     */
+    public function __set($name, $value)
+    {
+    }
+
+    /**
+     * @param string $name
      * @return object
      */
     public function __get($name)
     {
         if ('author' === $name) {
             if (isset($this->author_id)) {
-                //$res = Author::findOneById($this->author_id);
-                //var_dump($res); die;
                 $this->data['author'] = Author::findOneById($this->author_id);
                 return $this->data['author'];
             }

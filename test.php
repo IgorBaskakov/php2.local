@@ -8,6 +8,7 @@ $ex = new Exception('Some happens!', 12);
 var_dump( $ex->getCode() );
 */
 
+
 try {
 
     $obj = new \App\FluentClass;
@@ -24,3 +25,22 @@ try {
 }
 
 var_dump( $obj->getValues() );
+
+
+/*
+try {
+
+    $obj = new \App\Models\Article;
+    $obj->fill([
+        41 => 'Новость 1',
+        'lead' => 'Содержание новости',
+        'name' => 'Пупкин Василий'
+    ]);
+
+} catch (\App\Errors $errors) {
+    foreach ($errors as $error) {
+        var_dump( $error->getMessage() );
+        \App\Logger::WriteLog('Ошибка с данными', $error);
+    }
+}
+*/
