@@ -22,12 +22,17 @@ class Db
     {
         $config = Config::instance();
         $data = $config->data['db'];
-        $this->dbh = new \PDO(
-            'mysql:host=' . $data['host'] . ';dbname=' . $data['dbname'],
-            $data['login'],
-            $data['password']
-        );
-        $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+
+        try {
+            $this->dbh = new \PDO(
+                'mysql:host=' . $data['host'] . ';dbname=' . $data['dbname'],
+                $data['login'],
+                $data['password']
+            );
+            $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+        } catch (\PDOException $e) {
+            throw new DbErrors('Ошибка! Что-то случилось!', 11);
+        }
     }
 
     /**
@@ -38,8 +43,12 @@ class Db
      */
     public function query(string $sql, string $class = \stdClass::class, array $params = [])
     {
-        $sth = $this->dbh->prepare($sql);
-        $res = $sth->execute($params);
+        try {
+            $sth = $this->dbh->prepare($sql);
+            $res = $sth->execute($params);
+        } catch (\PDOException $e) {
+            throw new DbErrors('Ошибка! Нет данных!');
+        }
         return (true === $res) ? $sth->fetchAll(\PDO::FETCH_CLASS, $class) : false;
     }
 
@@ -50,8 +59,13 @@ class Db
      */
     public function execute(string $sql, array $params = [])
     {
-        $sth = $this->dbh->prepare($sql);
-        return $sth->execute($params);
+        try {
+            $sth = $this->dbh->prepare($sql);
+            return $sth->execute($params);
+        } catch (\PDOException $e) {
+            throw new DbErrors('Ошибка! Операция не может быть выполнена!');
+        }
+
     }
 
     /**

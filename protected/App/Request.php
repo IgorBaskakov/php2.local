@@ -62,7 +62,6 @@ class Request
         } else {
             $this->data['act'] = 'Default';
         }
-        //var_dump($this->data);die;
         return $this->data;
     }
 

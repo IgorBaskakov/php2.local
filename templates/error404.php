@@ -8,7 +8,14 @@
     <title>Новости не найдены!</title>
 </head>
 <body>
-    <h1><?php echo $message; ?></h1>
+
+    <h1>
+        <?php
+            echo $error->getMessage();
+        ?>
+    </h1>
+
     <a href="/Index/Default"><button>Вернуться на главную страницу</button></a>
+
 </body>
 </html>

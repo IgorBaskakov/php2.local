@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Db;
+use App\Error404;
 use App\MagicTrait;
 
 /**
@@ -26,7 +27,11 @@ abstract class Model
     {
         $db = Db::instance();
         $sql = 'SELECT * FROM ' . static::TABLE;
-        return $db->query($sql, static::class);
+        $res = $db->query($sql, static::class);
+        if (false === $res) {
+            throw new Error404('Ошибка 404 - не найдено!');
+        }
+        return $res;
     }
 
     /**
@@ -38,7 +43,9 @@ abstract class Model
         $db = Db::instance();
         $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=:id';
         $res = $db->query($sql, static::class, [':id' => $id]);
-        //return ((false !== $res) && (0 !== count($res))) ? $res[0] : false;
+        if (empty($res)) {
+            throw new Error404('Ошибка 404 - не найдено!');
+        }
         return $res ? $res[0] : false;
     }
 
@@ -127,6 +134,11 @@ WHERE id = :id
         $data = [':id' => $this->id];
         $db = Db::instance();
         $db->execute($sql, $data);
+    }
+
+    public function fill(array $data)
+    {
+        //$this->data =
     }
 
 }

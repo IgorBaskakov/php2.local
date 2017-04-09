@@ -20,7 +20,7 @@ class News extends Controller
             $this->view->display(__DIR__ . '/../../../templates/one.php');
         } else {
             $this->view->message = 'Ошибка 404! Страница не найдена!';
-            $this->view->display(__DIR__ . '/../../../templates/error.php');
+            $this->view->display(__DIR__ . '/../../../templates/error404.php');
         }
     }
 

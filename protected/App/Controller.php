@@ -50,8 +50,7 @@ abstract class Controller
      */
     public function __call($name, $arguments)
     {
-        $this->view->message = 'Ошибка 404! Страница не найдена!';
-        $this->view->display(__DIR__ . '/../../templates/error.php');
+        throw new Error404('Ошибка 404! Страница не найдена!');
     }
 
 }

@@ -29,7 +29,10 @@ class Article extends Model
     {
         if ('author' === $name) {
             if (isset($this->author_id)) {
-                return Author::findOneById($this->author_id);
+                //$res = Author::findOneById($this->author_id);
+                //var_dump($res); die;
+                $this->data['author'] = Author::findOneById($this->author_id);
+                return $this->data['author'];
             }
         }
     }
