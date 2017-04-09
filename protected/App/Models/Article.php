@@ -17,20 +17,8 @@ class Article extends Model
 
     protected const TABLE = 'news';
 
-    public $title;
-    public $lead;
-
     /** @var int Should contain a author_id */
     protected $author_id;
-
-    /**
-     * @param string $name
-     * @param mixed $value
-     * @return void
-     */
-    public function __set($name, $value)
-    {
-    }
 
     /**
      * @param string $name
@@ -44,6 +32,7 @@ class Article extends Model
                 return $this->data['author'];
             }
         }
+        return $this->data[$name];
     }
 
     /**
@@ -55,6 +44,8 @@ class Article extends Model
         if ('author' === $name) {
             return isset($this->author_id);
         }
+        return isset($this->data[$name]);
+        //parent::__isset($name);
     }
 
 }

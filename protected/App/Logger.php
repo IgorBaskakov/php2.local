@@ -11,7 +11,7 @@ class Logger
 
     use Singleton;
 
-    const FILE = __DIR__ . '/../../logs/log.txt';
+    const FILE = __DIR__ . '/../logs/log.txt';
 
     /**
      * @param string $info

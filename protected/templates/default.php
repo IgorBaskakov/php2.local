@@ -34,7 +34,7 @@
             </div>
             <hr>
             <?php foreach ($articles as $item) : ?>
-                <a href="/News/One/?id=<?php echo $item->id; ?>">
+                <a href="/News/One/?id=<?php echo $item->id;?>">
                     <h3><?php echo $item->title; ?></h3>
                 </a>
                 <div class="lead">

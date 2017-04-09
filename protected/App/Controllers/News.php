@@ -17,9 +17,9 @@ class News extends Controller
     {
         $this->view->item = \App\Models\Article::findOneById($_GET['id'] ?? null);
         if (false !== $this->view->item) {
-            $this->view->display(__DIR__ . '/../../../templates/one.php');
+            $this->view->display(__DIR__ . '/../../templates/one.php');
         } else {
-            $this->view->display(__DIR__ . '/../../../templates/error404.php');
+            $this->view->display(__DIR__ . '/../../templates/error404.php');
         }
     }
 

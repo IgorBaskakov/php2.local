@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/protected/autoload.php';
+require_once __DIR__ . '/../protected/autoload.php';
 
 $request = new \App\Request;
 $result = $request->parsing($_SERVER['REQUEST_URI']);

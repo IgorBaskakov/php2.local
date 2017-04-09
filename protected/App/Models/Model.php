@@ -19,7 +19,7 @@ abstract class Model
 
     protected const TABLE = null;
 
-    public $id;
+//    public $id;
 
     /**
      * @return array|bool
@@ -69,8 +69,8 @@ abstract class Model
         $columns = [];
         $params = [];
         $data = [];
-        foreach ($this as $name => $value) {
-            if ('id' == $name || 'data' == $name) {
+        foreach ($this->data as $name => $value) {
+            if ('id' == $name) {
                 continue;
             }
             $columns[] = $name;
@@ -93,10 +93,7 @@ VALUES (' . implode(', ', $params) . ')
     {
         $data = [];
         $columns = [];
-        foreach ($this as $name => $value) {
-            if ('data' == $name) {
-                continue;
-            }
+        foreach ($this->data as $name => $value) {
             $data[':' . $name] = $value;
             if ('id' == $name) {
                  continue;
