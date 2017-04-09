@@ -27,6 +27,15 @@ try {
     $controllerError->actionShowError404($ex);
     \App\Logger::WriteLog('Ошибка в работе с данными', $ex);
 
+} catch (\App\Errors $ex) {
+
+    $controllerError = new \App\Controllers\Errors;
+    $controllerError->actionShowErrorNewData($ex);
+    foreach ($ex as $error) {
+        \App\Logger::WriteLog('Ошибка при заполнении данными', $error);
+    }
+
+
 } catch (Throwable $ex) {
 
     $controllerError = new \App\Controllers\Errors;

@@ -28,4 +28,10 @@ class Errors extends Controller
         $this->view->display(__DIR__ . '/../../templates/errors/otherErrors.php');
     }
 
+    public function actionShowErrorNewData(\App\Errors $errors)
+    {
+        $this->view->errors = $errors;
+        $this->view->display(__DIR__ . '/../../templates/errors/errorInsertData.php');
+    }
+
 }

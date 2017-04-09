@@ -77,6 +77,8 @@ abstract class Model
             $params[] = ':' . $name;
             $data[':' . $name] = $value;
         }
+        $this->fill($data);
+
         $sql = '
 INSERT INTO ' . static::TABLE . ' (' . implode(', ', $columns) . ') 
 VALUES (' . implode(', ', $params) . ')
@@ -141,8 +143,9 @@ WHERE id = :id
     public function setProp(string $prop, $val)
     {
         $this->$prop = $val;
-        if (!isset($this->$prop)) {
-            throw new \Exception('Свойство ' . $prop . ' отсутствует!');
+        if (empty($this->$prop)) {
+            $prop = mb_substr($prop, 1);
+            throw new \Exception('Отсутствуют данные для поля ' . $prop . '!');
         }
 
     }
