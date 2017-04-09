@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Admin;
 
-use App\CheckDataFromUser;
+use App\Components\CheckDataFromUser;
 use App\Controller;
 use App\Models\Article;
 

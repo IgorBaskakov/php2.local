@@ -1,6 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Components;
+
+use App\Singleton;
 
 /**
  * Class Logger
@@ -11,14 +13,14 @@ class Logger
 
     use Singleton;
 
-    const FILE = __DIR__ . '/../logs/log.txt';
+    const FILE = __DIR__ . '/../../logs/log.txt';
 
     /**
      * @param string $info
      * @param \Throwable $e
      * @return void
      */
-    static public function WriteLog(string $info, \Throwable $e)
+    static public function writeLog(string $info, \Throwable $e)
     {
         $time = date('Y-m-d H:i:s');
         $data = "\n" . $time . ' - [' . $info . ']: ' . $e->getMessage() . '.'

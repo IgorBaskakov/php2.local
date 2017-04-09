@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Components;
 
 /**
  * Class Request
@@ -51,7 +51,7 @@ class Request
             $path .= '\\' . $part;
         }
 
-        if ($this->isFile(__DIR__ . $path)) {
+        if ($this->isFile(__DIR__ . '/../' . $path)) {
             $this->data['ctrl'] = $path;
         } else {
             $this->data['ctrl'] = $pathDefault . '\\' . static::CONTROLLER;
@@ -62,6 +62,7 @@ class Request
         } else {
             $this->data['act'] = static::ACTION;
         }
+
         return $this->data;
     }
 

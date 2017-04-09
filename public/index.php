@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../protected/autoload.php';
 
-$request = new \App\Request;
+$request = new \App\Components\Request;
 $result = $request->parsing($_SERVER['REQUEST_URI']);
 
 $controllerName = $result['ctrl'];
@@ -17,26 +17,26 @@ try {
 
     $controllerError = new \App\Controllers\Errors;
     $controllerError->actionShowErrorDb($ex);
-   \App\Logger::WriteLog('Ошибка в работе с БД', $ex);
+   \App\Components\Logger::writeLog('Ошибка в работе с БД', $ex);
 
 
 } catch (\App\Error404 $ex) {
 
     $controllerError = new \App\Controllers\Errors;
     $controllerError->actionShowError404($ex);
-    \App\Logger::WriteLog('Ошибка в работе с данными', $ex);
+    \App\Components\Logger::writeLog('Ошибка в работе с данными', $ex);
 
 } catch (\App\Errors $errors) {
 
     $controllerError = new \App\Controllers\Errors;
     $controllerError->actionShowErrorNewData($errors);
     foreach ($errors as $error) {
-        \App\Logger::WriteLog('Ошибка при заполнении данными', $error);
+        \App\Components\Logger::writeLog('Ошибка при заполнении данными', $error);
     }
 
 } catch (Throwable $ex) {
 
     $controllerError = new \App\Controllers\Errors;
     $controllerError->actionShowOtherErrors($ex);
-    \App\Logger::WriteLog('Неопознанная ошибка', $ex);
+    \App\Components\Logger::writeLog('Неопознанная ошибка', $ex);
 }

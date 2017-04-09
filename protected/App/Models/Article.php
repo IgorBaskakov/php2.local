@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\MagicTrait;
-
 require_once __DIR__ . '/../../autoload.php';
 
 /**

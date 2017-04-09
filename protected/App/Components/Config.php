@@ -1,6 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Components;
+
+use App\Singleton;
 
 /**
  * Class Config
@@ -18,7 +20,7 @@ class Config
      */
     protected function __construct()
     {
-        $this->data = include __DIR__ . '/../configData.php';
+        $this->data = include __DIR__ . '/../../configData.php';
     }
 
 }
