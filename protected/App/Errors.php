@@ -69,5 +69,4 @@ class Errors extends \Exception implements \Iterator
         reset($this->data);
     }
 
-
 }

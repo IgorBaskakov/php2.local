@@ -19,10 +19,9 @@ abstract class Model
 
     protected const TABLE = null;
 
-//    public $id;
-
     /**
      * @return array|bool
+     * @throws Error404
      */
     public static function findAll()
     {
@@ -38,6 +37,7 @@ abstract class Model
     /**
      * @param int|null $id
      * @return object|bool
+     * @throws Error404
      */
     public static function findOneById(int $id = null)
     {

@@ -8,7 +8,6 @@ $result = $request->parsing($_SERVER['REQUEST_URI']);
 $controllerName = $result['ctrl'];
 $controllerClassName = '\\App' . $controllerName;
 
-
 try {
 
     $controller = new $controllerClassName;
@@ -27,14 +26,13 @@ try {
     $controllerError->actionShowError404($ex);
     \App\Logger::WriteLog('Ошибка в работе с данными', $ex);
 
-} catch (\App\Errors $ex) {
+} catch (\App\Errors $errors) {
 
     $controllerError = new \App\Controllers\Errors;
-    $controllerError->actionShowErrorNewData($ex);
-    foreach ($ex as $error) {
+    $controllerError->actionShowErrorNewData($errors);
+    foreach ($errors as $error) {
         \App\Logger::WriteLog('Ошибка при заполнении данными', $error);
     }
-
 
 } catch (Throwable $ex) {
 
