@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Controllers;
 
 /**
  * Class Controller
@@ -51,7 +51,7 @@ abstract class Controller
      */
     public function __call($name, $arguments)
     {
-        throw new Error404('Ошибка 404! Страница не найдена!');
+        throw new \App\Error404('Ошибка 404! Страница не найдена!');
     }
 
 }

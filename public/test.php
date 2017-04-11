@@ -27,7 +27,7 @@ try {
 var_dump( $obj->getValues() );
 */
 
-
+/*
 try {
 
     $obj = new \App\Models\Article;
@@ -42,3 +42,8 @@ try {
         //\App\Logger::WriteLog('Ошибка с данными', $error);
     }
 }
+*/
+
+$logger = \App\Components\Logger::instance();
+
+$logger->writeLog('Ошибка при заполнении данными', $error);

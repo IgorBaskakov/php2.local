@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Admin;
 
-use App\Controller;
+use App\Controllers\Controller;
 
 /**
  * Class Index

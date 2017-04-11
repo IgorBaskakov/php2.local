@@ -3,7 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Components\CheckDataFromUser;
-use App\Controller;
+use App\Controllers\Controller;
 use App\Models\Article;
 
 /**

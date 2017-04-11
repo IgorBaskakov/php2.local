@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 
-use App\Controller;
+use App\Controllers\Controller;
 use App\DbErrors;
 use App\Error404;
 

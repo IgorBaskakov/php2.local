@@ -147,7 +147,6 @@ WHERE id = :id
             $prop = mb_substr($prop, 1);
             throw new \Exception('Отсутствуют данные для поля ' . $prop . '!');
         }
-
     }
 
     /**
