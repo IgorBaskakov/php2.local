@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Новости не найдены!</title>
     <style>
-        h1 {
+        h1, h3 {
             text-align: center;
         }
     </style>
@@ -15,10 +15,14 @@
 <body>
 
     <h1>
-        <?php
-            echo $error->getMsg();
-        ?>
+        Ошибка 404!
     </h1>
+
+    <h3>
+        <?php
+            echo $error->getMessage();
+        ?>
+    </h3>
 
     <a href="/Index/Default"><button>Вернуться на главную страницу</button></a>
 

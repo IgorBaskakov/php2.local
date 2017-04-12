@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Controllers\Controller;
+use App\Models\Article;
 
 /**
  * Class Index
@@ -12,10 +12,14 @@ class Index extends Controller
 {
     /**
      * @return void
+     * @throws \Exception
      */
     protected function actionDefault()
     {
-        $this->view->articles = \App\Models\Article::findAll();
+        $this->view->articles = Article::findAll();
+        if (false === $this->view->articles) {
+            throw new \Exception('Отсутствуют ВСЕ данные');
+        }
         $this->view->display(__DIR__ . '/../../templates/default.php');
     }
 

@@ -43,7 +43,6 @@ class Article extends Model
             return isset($this->author_id);
         }
         return isset($this->data[$name]);
-        //parent::__isset($name);
     }
 
 }

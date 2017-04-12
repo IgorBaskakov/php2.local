@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\Controller;
+use App\Models\Article;
 
 /**
  * Class Index
@@ -17,7 +18,7 @@ class Index extends Controller
     protected function actionDefault()
     {
         $quantityNews = 10;
-        $this->view->news = \App\Models\Article::findLatest($quantityNews);
+        $this->view->news = Article::findLatest($quantityNews);
         $this->view->display(__DIR__ . '/../../../admin/templates/index.php');
     }
 

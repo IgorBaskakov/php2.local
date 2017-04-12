@@ -14,30 +14,22 @@ try {
     $controller = new $controllerClassName;
     $controller->action($result['act']);
 
-} catch (\App\DbErrors $ex) {
+} catch (\App\ErrorDb $ex) {
 
     $controllerError = new \App\Controllers\Errors;
-    $controllerError->actionShowErrorDb($ex);
+    $controllerError->actionShowError($ex);
     $logger->writeLog('Ошибка в работе с БД', $ex);
-
 
 } catch (\App\Error404 $ex) {
 
     $controllerError = new \App\Controllers\Errors;
     $controllerError->actionShowError404($ex);
-    $logger->writeLog('Ошибка в работе с данными', $ex);
-
-} catch (\App\Errors $errors) {
-
-    $controllerError = new \App\Controllers\Errors;
-    $controllerError->actionShowErrorNewData($errors);
-    foreach ($errors as $error) {
-        $logger->writeLog('Ошибка при заполнении данными', $error);
-    }
+    $logger->writeLog('Данные не найдены', $ex);
 
 } catch (Throwable $ex) {
 
     $controllerError = new \App\Controllers\Errors;
-    $controllerError->actionShowOtherErrors($ex);
+    $controllerError->actionShowError($ex);
     $logger->writeLog('Неопознанная ошибка', $ex);
+
 }

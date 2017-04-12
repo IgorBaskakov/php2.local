@@ -2,7 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Controllers\Controller;
+use App\Error404;
+use App\Models\Article;
 
 /**
  * Class News
@@ -11,15 +12,16 @@ use App\Controllers\Controller;
 class News extends Controller
 {
     /**
+     * @throws Error404
      * @return void
      */
     protected function actionOne()
     {
-        $this->view->item = \App\Models\Article::findOneById($_GET['id'] ?? null);
-        if (false !== $this->view->item) {
-            $this->view->display(__DIR__ . '/../../templates/one.php');
+        $this->view->item = Article::findOneById($_GET['id'] ?? null);
+        if (false === $this->view->item) {
+            throw new Error404('Данные не найдены');
         } else {
-            $this->view->display(__DIR__ . '/../../templates/error404.php');
+            $this->view->display(__DIR__ . '/../../templates/one.php');
         }
     }
 

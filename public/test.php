@@ -1,49 +1,19 @@
 <?php
 
-require_once __DIR__ . '/../protected/autoload.php';
+function ($x)
+{
+    return $x * 2;
+};
 
-/*
-$ex = new Exception('Some happens!', 12);
+$m3 = function ($x)
+{
+    return $x * 3;
+};
 
-var_dump( $ex->getCode() );
-*/
-
-/*
-try {
-
-    $obj = new \App\FluentClass;
-    $obj->fill([
-        'foo' => 1,
-        'bar' => -1,
-        'baz' => 0
-    ]);
-
-} catch (\App\Errors $errors) {
-    foreach ($errors as $error) {
-        echo $error->getMessage();
-    }
+function apply($x, callable $func)
+{
+    //var_dump($func);
+    return $func($x);
 }
 
-var_dump( $obj->getValues() );
-*/
-
-/*
-try {
-
-    $obj = new \App\Models\Article;
-    $obj->fill([
-        'title' => 'Новость 1',
-        'lead' => 'Содержание новости'
-    ]);
-
-} catch (\App\Errors $errors) {
-    foreach ($errors as $error) {
-        var_dump( $error->getMessage() );
-        //\App\Logger::WriteLog('Ошибка с данными', $error);
-    }
-}
-*/
-
-$logger = \App\Components\Logger::instance();
-
-$logger->writeLog('Ошибка при заполнении данными', $error);
+echo apply(2, $m3);

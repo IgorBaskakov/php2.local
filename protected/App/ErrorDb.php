@@ -3,10 +3,10 @@
 namespace App;
 
 /**
- * Class Error404
+ * Class ErrorDb
  * @package App
  */
-class Error404 extends \Exception
+class ErrorDb extends \Exception
 {
 
 

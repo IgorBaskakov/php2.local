@@ -19,6 +19,7 @@ class Db
 
     /**
      * Db constructor.
+     * @throws ErrorDb
      */
     protected function __construct()
     {
@@ -33,7 +34,7 @@ class Db
             );
             $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         } catch (\PDOException $e) {
-            throw new DbErrors('Ошибка подключения к БД', 11);
+            throw new ErrorDb('Ошибка подключения к БД');
         }
     }
 
@@ -41,6 +42,7 @@ class Db
      * @param string $sql
      * @param string $class
      * @param array $params
+     * @throws ErrorDb
      * @return array|bool
      */
     public function query(string $sql, string $class = \stdClass::class, array $params = [])
@@ -48,15 +50,16 @@ class Db
         try {
             $sth = $this->dbh->prepare($sql);
             $res = $sth->execute($params);
+            return (true === $res) ? $sth->fetchAll(\PDO::FETCH_CLASS, $class) : false;
         } catch (\PDOException $e) {
-            throw new DbErrors('Ошибка выполнения запроса с возвратом данных');
+            throw new ErrorDb('Ошибка выполнения запроса с возвратом данных');
         }
-        return (true === $res) ? $sth->fetchAll(\PDO::FETCH_CLASS, $class) : false;
     }
 
     /**
      * @param string $sql
      * @param array $params
+     * @throws ErrorDb
      * @return bool
      */
     public function execute(string $sql, array $params = [])
@@ -65,17 +68,23 @@ class Db
             $sth = $this->dbh->prepare($sql);
             return $sth->execute($params);
         } catch (\PDOException $e) {
-            throw new DbErrors('Ошибка выполнения запроса');
+            throw new ErrorDb('Ошибка выполнения запроса');
         }
 
     }
 
     /**
+     * @throws ErrorDb
      * @return string
      */
     public function getLastInsertId()
     {
-        return $this->dbh->lastInsertId();
+        try {
+            return $this->dbh->lastInsertId();
+        } catch (\PDOException $e) {
+            throw new ErrorDb('Ошибка при попытке вернуть ID последней записи');
+        }
+
     }
 
 }

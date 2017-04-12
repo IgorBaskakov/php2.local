@@ -47,7 +47,7 @@
     </div>
     <hr>
 
-    <form action="/admin/Editing/Edit" method="post">
+    <form action="/admin/Editing/Insert" method="post">
         <article>
             <h2>Добавить новость:</h2>
             <div>

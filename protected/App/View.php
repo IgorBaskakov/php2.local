@@ -5,7 +5,6 @@ namespace App;
 /**
  * Class View
  * @package App
- *
  * @implements \Countable
  * @implements \Iterator
  */

@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Controllers;
+use App\Error404;
 
 /**
  * Class Controller
- * @package App
+ * @package App\Controllers
  */
 abstract class Controller
 {
@@ -31,6 +32,7 @@ abstract class Controller
 
     /**
      * @param string $action
+     * @throws \Exception
      * @return void
      */
     public function action($action)
@@ -39,7 +41,7 @@ abstract class Controller
             $action = 'action' . $action;
             $this->$action();
         } else {
-            die('Доступ закрыт!');
+            throw new \Exception('Доступ закрыт!');
         }
     }
 
@@ -51,7 +53,7 @@ abstract class Controller
      */
     public function __call($name, $arguments)
     {
-        throw new \App\Error404('Ошибка 404! Страница не найдена!');
+        throw new Error404('Страница не найдена');
     }
 
 }

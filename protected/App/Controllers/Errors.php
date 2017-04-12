@@ -2,36 +2,31 @@
 
 namespace App\Controllers;
 
-
-use App\Controllers\Controller;
-use App\DbErrors;
-use App\Error404;
-
+/**
+ * Class Errors
+ * @package App\Controllers
+ */
 class Errors extends Controller
 {
 
-    public function actionShowErrorDb(DbErrors $error)
+    /**
+     * @param \Throwable $error
+     * @return void
+     */
+    public function actionShowError(\Throwable $error)
     {
         $this->view->error = $error;
-        $this->view->display(__DIR__ . '/../../templates/errors/errorsDb.php');
+        $this->view->display(__DIR__ . '/../../templates/errors/error.php');
     }
 
-    public function actionShowError404(Error404 $error)
+    /**
+     * @param \Exception $error
+     * @return void
+     */
+    public function actionShowError404(\Exception $error)
     {
         $this->view->error = $error;
         $this->view->display(__DIR__ . '/../../templates/errors/error404.php');
-    }
-
-    public function actionShowOtherErrors(\Throwable $error)
-    {
-        $this->view->error = $error;
-        $this->view->display(__DIR__ . '/../../templates/errors/otherErrors.php');
-    }
-
-    public function actionShowErrorNewData(\App\Errors $errors)
-    {
-        $this->view->errors = $errors;
-        $this->view->display(__DIR__ . '/../../templates/errors/errorInsertData.php');
     }
 
 }

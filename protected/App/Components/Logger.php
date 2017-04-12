@@ -6,7 +6,7 @@ use App\Singleton;
 
 /**
  * Class Logger
- * @package App
+ * @package App\Components
  */
 class Logger
 {

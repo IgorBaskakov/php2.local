@@ -4,7 +4,7 @@ namespace App\Components;
 
 /**
  * Class Request
- * @package App
+ * @package App\Components
  */
 class Request
 {
@@ -13,14 +13,6 @@ class Request
 
     const ACTION = 'Default';
     const CONTROLLER = 'Index';
-    /**
-     * @param string $path
-     * @return bool
-     */
-    public function isFile($path)
-    {
-        return is_file($path . '.php');
-    }
 
     /**
      * @param string $req
@@ -51,7 +43,7 @@ class Request
             $path .= '\\' . $part;
         }
 
-        if ($this->isFile(__DIR__ . '/../' . $path)) {
+        if (is_file(__DIR__ . '/../' . $path . '.php')) {
             $this->data['ctrl'] = $path;
         } else {
             $this->data['ctrl'] = $pathDefault . '\\' . static::CONTROLLER;

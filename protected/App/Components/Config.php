@@ -6,7 +6,7 @@ use App\Singleton;
 
 /**
  * Class Config
- * @package App
+ * @package App\Components
  * @property string $data
  */
 class Config

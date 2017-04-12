@@ -17,6 +17,9 @@ abstract class Model
 
     use MagicTrait;
 
+    /** @var array Should contain a data */
+    protected $data = [];
+
     protected const TABLE = null;
 
     /**
@@ -27,11 +30,7 @@ abstract class Model
     {
         $db = Db::instance();
         $sql = 'SELECT * FROM ' . static::TABLE;
-        $res = $db->query($sql, static::class);
-        if (false === $res) {
-            throw new Error404('Отсутствуют ВСЕ данные');
-        }
-        return $res;
+        return $db->query($sql, static::class);
     }
 
     /**
@@ -44,9 +43,6 @@ abstract class Model
         $db = Db::instance();
         $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=:id';
         $res = $db->query($sql, static::class, [':id' => $id]);
-        if (empty($res)) {
-            throw new Error404('Не найдена запись с указанным ID');
-        }
         return $res ? $res[0] : false;
     }
 
@@ -77,8 +73,6 @@ abstract class Model
             $params[] = ':' . $name;
             $data[':' . $name] = $value;
         }
-        $this->fill($data);
-
         $sql = '
 INSERT INTO ' . static::TABLE . ' (' . implode(', ', $columns) . ') 
 VALUES (' . implode(', ', $params) . ')
@@ -135,17 +129,17 @@ WHERE id = :id
     }
 
     /**
-     * @param string $prop
-     * @param $val
-     * @throws \Exception
-     * @return void
+     * @param string $name
+     * @param $value
      */
-    public function setProp(string $prop, $val)
+    public function __set($name, $value)
     {
-        $this->$prop = $val;
-        if (empty($this->$prop)) {
-            $prop = mb_substr($prop, 1);
-            throw new \Exception('Отсутствуют данные для поля ' . $prop . '!');
+        $method = 'set' . ucfirst($name);
+
+        if (method_exists($this, $method)) {
+            $this->$method($value);
+        } else {
+            $this->data[$name] = $value;
         }
     }
 
@@ -157,9 +151,9 @@ WHERE id = :id
     public function fill(array $data)
     {
         $errors = new Errors;
-        foreach ($data as $key => $value) {
+        foreach ($data as $key => $val) {
             try {
-                $this->setProp($key, $value);
+                $this->$key = $val;
             } catch (\Exception $e) {
                 $errors->add($e);
             }
