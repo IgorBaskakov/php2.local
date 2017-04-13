@@ -20,7 +20,7 @@ class Index extends Controller
         if (false === $this->view->articles) {
             throw new \Exception('Отсутствуют ВСЕ данные');
         }
-        $this->view->display(__DIR__ . '/../../templates/default.php');
+        $this->view->displayWithTwig(__DIR__ . '/../../templates/default.php');
     }
 
 }

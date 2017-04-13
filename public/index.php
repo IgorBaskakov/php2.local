@@ -26,6 +26,14 @@ try {
     $controllerError->actionShowError404($ex);
     $logger->writeLog('Данные не найдены', $ex);
 
+} catch (\App\Errors $errors) {
+
+    foreach ($errors as $error) {
+        $logger->writeLog('Ошибка ввода данных', $error);
+    }
+    $controllerError = new \App\Controllers\Errors;
+    $controllerError->actionShowAllErrors($errors);
+
 } catch (Throwable $ex) {
 
     $controllerError = new \App\Controllers\Errors;

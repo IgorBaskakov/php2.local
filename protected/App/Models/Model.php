@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Db;
 use App\Error404;
 use App\Errors;
+use App\IteratorTrait;
 use App\MagicTrait;
 
 /**
@@ -12,10 +13,11 @@ use App\MagicTrait;
  * @package App\Models
  * @property int $id
  */
-abstract class Model
+abstract class Model implements \Iterator
 {
 
     use MagicTrait;
+    use IteratorTrait;
 
     /** @var array Should contain a data */
     protected $data = [];
@@ -54,7 +56,8 @@ abstract class Model
     {
         $db = Db::instance();
         $sql = 'SELECT * FROM ' . static::TABLE . ' ORDER BY id DESC LIMIT ' . $quantity;
-        return (1 === $quantity) ? $db->query($sql, static::class)[0] : $db->query($sql, static::class);
+        //var_dump($db->query($sql, static::class));
+        return $db->query($sql, static::class);
     }
 
     /**
@@ -65,7 +68,7 @@ abstract class Model
         $columns = [];
         $params = [];
         $data = [];
-        foreach ($this->data as $name => $value) {
+        foreach ($this as $name => $value) {
             if ('id' == $name) {
                 continue;
             }
@@ -89,7 +92,7 @@ VALUES (' . implode(', ', $params) . ')
     {
         $data = [];
         $columns = [];
-        foreach ($this->data as $name => $value) {
+        foreach ($this as $name => $value) {
             $data[':' . $name] = $value;
             if ('id' == $name) {
                  continue;

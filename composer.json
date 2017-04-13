@@ -1,5 +1,5 @@
 {
   "require": {
-    "phpmailer/phpmailer": "*"
+    "twig/twig": "^2.0"
   }
 }

@@ -45,4 +45,20 @@ class Article extends Model
         return isset($this->data[$name]);
     }
 
+    public function setTitle(string $data)
+    {
+        if (empty($data)) {
+            throw new \Exception('Заголовок новости должен быть заполнен');
+        }
+        $this->data['title'] = $data;
+    }
+
+    public function setLead(string $data)
+    {
+        if (empty($data)) {
+            throw new \Exception('Содержание новости должно быть заполнено');
+        }
+        $this->data['lead'] = $data;
+    }
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use App\Error404;
+use App\View;
 
 /**
  * Class Controller
@@ -18,7 +19,7 @@ abstract class Controller
      */
     public function __construct()
     {
-        $this->view = new \App\View;
+        $this->view = new View;
     }
 
     /**

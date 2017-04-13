@@ -21,7 +21,7 @@ class News extends Controller
         if (false === $this->view->item) {
             throw new Error404('Данные не найдены');
         } else {
-            $this->view->display(__DIR__ . '/../../templates/one.php');
+            $this->view->displayWithTwig(__DIR__ . '/../../templates/one.php');
         }
     }
 

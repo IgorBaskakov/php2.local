@@ -9,24 +9,28 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
-    <title>Новости не найдены!</title>
     <style>
-        h1, h3 {
+        .alert-danger {
             text-align: center;
         }
     </style>
+    <title>Ошибка</title>
 </head>
 <body>
 
-    <h1>
-        Ошибка 404!
-    </h1>
+    {% for error in errors %}
+        <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            {{ error }}
+        </div>
+    {% endfor%}
 
-    <h3>
-        {{ error }}
-    </h3>
-
-    <a href="/Index/Default"><button>Вернуться на главную страницу</button></a>
+    <a href="/admin/Index/Default">
+        <button>
+            Вернуться на админ-панель
+        </button>
+    </a>
 
 </body>
 </html>

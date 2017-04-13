@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Components\Twig;
+
 /**
  * Class View
  * @package App
@@ -13,6 +15,7 @@ class View implements
     \Iterator
 {
     use MagicTrait;
+    use IteratorTrait;
 
     /** @var array Should contain a data */
     protected $data;
@@ -43,51 +46,21 @@ class View implements
     }
 
     /**
+     * @param string $template
+     * @return void
+     */
+    public function displayWithTwig(string $template)
+    {
+        $twig = new Twig($template, $this->data);
+        echo $twig->render();
+    }
+
+    /**
      * @return int
      */
     public function count()
     {
         return count($this->data);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function current()
-    {
-        return current($this->data);
-    }
-
-    /**
-     * @return void
-     */
-    public function next()
-    {
-        next($this->data);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function key()
-    {
-        return key($this->data);
-    }
-
-    /**
-     * @return bool
-     */
-    public function valid()
-    {
-        return null !== key($this->data);
-    }
-
-    /**
-     * @return void
-     */
-    public function rewind()
-    {
-        reset($this->data);
     }
 
 }

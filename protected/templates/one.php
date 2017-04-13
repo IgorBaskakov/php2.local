@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?php echo $item->title; ?></title>
+    <title>{{ title }}</title>
     <style>
         .lead {
             margin: 10px auto 5px;
@@ -29,25 +29,25 @@
 <body>
 
         <article>
-            <h1><?php echo $item->title; ?></h1>
+            <h1>{{ item.title }}</h1>
             <div class="lead">
-                <?php echo $item->lead; ?>
+                {{ item.lead }}
                 <br>
                 <br>
-                <?php if (isset($item->author)) : ?>
+                {% if item.author is not null %}
                 <div>
                     <strong>
                         <em>
                             Автор:
-                            <?php echo $item->author->name; ?>
+                            {{ item.author.name }}
                         </em>
                     </strong>
                 </div>
-                <?php endif; ?>
+                {% endif %}
             </div>
             <div class="back">
                 <a href="/Index/Default">
-                    <button>Назад</button>
+                    <button>На главную страницу</button>
                 </a>
             </div>
         </article>

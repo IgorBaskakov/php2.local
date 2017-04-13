@@ -10,23 +10,23 @@
 <body>
 
     <section>
-        <?php foreach(articles as $item) : ?>
+        {% for item in articles %}
         <article>
-            <h2><?php echo $item->title; ?></h2>
-            <div><?php echo $item->lead; ?></div>
+            <h2>{{ item.title }}</h2>
+            <div>{{ item.lead }}</div>
             <div>
                 <strong>
                     <em>
-                        <?php if (isset($item->author)) : ?>
+                        {% if item.author is not null %}
                             Автор:
-                            <?php echo $item->author->name;
-                        endif; ?>
+                            {{ item.author.name }}
+                        {% endif %}
                     </em>
                 </strong>
             </div>
         </article>
         <hr>
-        <?php endforeach; ?>
+        {% endfor %}
     </section>
 
 </body>

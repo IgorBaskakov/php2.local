@@ -17,26 +17,17 @@ class Editing extends Controller
     protected $dataFromUser;
 
     /**
-     * Editing constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->dataFromUser = new CheckDataFromUser;
-    }
-
-    /**
      * @return void
      */
     protected function actionInsert()
     {
-        $checkedData = $this->dataFromUser->checkDataForEdit($_POST);
-        if (false === $checkedData) {
-            $article = new Article;
-            $article->title = $_POST['title'];
-            $article->lead = $_POST['lead'];
-            $article->save();
-        }
+        $article = new Article;
+        $article->fill([
+            'title' => $_POST['title'],
+            'lead' => $_POST['lead']
+        ]);
+        $article->save();
+
         $this->afterAction();
     }
 
@@ -45,13 +36,13 @@ class Editing extends Controller
      */
     protected function actionEdit()
     {
-        $checkedData = $this->dataFromUser->checkDataForEdit($_POST);
-        if (true === $checkedData) {
-            $article = Article::findOneById((int)$_POST['id']);
-            $article->title = $_POST['title'];
-            $article->lead = $_POST['lead'];
-            $article->save();
-        }
+        $article = Article::findOneById((int)$_POST['id']);
+        $article->fill([
+            'title' => $_POST['title'],
+            'lead' => $_POST['lead']
+        ]);
+        $article->save();
+
         $this->afterAction();
     }
 
@@ -60,11 +51,12 @@ class Editing extends Controller
      */
     protected function actionDelete()
     {
-        $checkedData = $this->dataFromUser->checkDataForDelete($_GET);
-        if (true === $checkedData) {
-            $article = Article::findOneById((int)$_GET['id']);
+        if (isset($_GET['id'])) {
+            $id = (int)$_GET['id'];
+            $article = Article::findOneById($id);
             $article->delete();
         }
+
         $this->afterAction();
     }
 

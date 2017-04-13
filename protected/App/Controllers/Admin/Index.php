@@ -19,7 +19,7 @@ class Index extends Controller
     {
         $quantityNews = 10;
         $this->view->news = Article::findLatest($quantityNews);
-        $this->view->display(__DIR__ . '/../../../admin/templates/index.php');
+        $this->view->display(__DIR__ . '/../../../templates/admin/index.php');
     }
 
 }

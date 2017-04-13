@@ -33,25 +33,25 @@
                 </a>
             </div>
             <hr>
-            <?php foreach ($articles as $item) : ?>
-                <a href="/News/One/?id=<?php echo $item->id;?>">
-                    <h3><?php echo $item->title; ?></h3>
+            {% for article in articles %}
+                <a href="/News/One/?id={{ article.id }}">
+                    <h3>{{ article.title }}</h3>
                 </a>
                 <div class="lead">
-                    <?php echo $item->lead; ?>
+                    {{ article.lead }}
                     <br>
-                    <?php if (isset($item->author)) : ?>
+                    {% if article.author is not null %}
                     <div>
                         <strong>
                             <em>
                                 Автор:
-                                <?php echo $item->author->name; ?>
+                                {{ article.author.name }}
                             </em>
                         </strong>
                     </div>
-                    <?php endif; ?>
+                    {% endif %}
                 </div>
-            <?php endforeach; ?>
+            {% endfor %}
         </article>
     </section>
 

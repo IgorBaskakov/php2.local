@@ -70,7 +70,6 @@ class Db
         } catch (\PDOException $e) {
             throw new ErrorDb('Ошибка выполнения запроса');
         }
-
     }
 
     /**
@@ -84,7 +83,6 @@ class Db
         } catch (\PDOException $e) {
             throw new ErrorDb('Ошибка при попытке вернуть ID последней записи');
         }
-
     }
 
 }

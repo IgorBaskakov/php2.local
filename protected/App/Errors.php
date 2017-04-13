@@ -8,6 +8,7 @@ namespace App;
  */
 class Errors extends \Exception implements \Iterator
 {
+    use IteratorTrait;
 
     /** @var array Should contain a data */
     protected $data = [];
@@ -27,46 +28,6 @@ class Errors extends \Exception implements \Iterator
     public function getErrors()
     {
         return $this->data;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function current()
-    {
-        return current($this->data);
-    }
-
-    /**
-     * @return void
-     */
-    public function next()
-    {
-        next($this->data);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function key()
-    {
-        return key($this->data);
-    }
-
-    /**
-     * @return bool
-     */
-    public function valid()
-    {
-        return null !== key($this->data);
-    }
-
-    /**
-     * @return void
-     */
-    public function rewind()
-    {
-        reset($this->data);
     }
 
 }
