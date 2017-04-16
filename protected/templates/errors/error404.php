@@ -9,7 +9,7 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
-    <title>Новости не найдены!</title>
+    <title>Ошибка 404</title>
     <style>
         h1, h3 {
             text-align: center;

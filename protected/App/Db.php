@@ -4,8 +4,6 @@ namespace App;
 
 use App\Components\Config;
 
-require_once __DIR__ . '/../autoload.php';
-
 /**
  * Class Db
  * @package App

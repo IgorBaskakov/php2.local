@@ -52,11 +52,10 @@ abstract class Model implements \Iterator
      * @param int $quantity
      * @return object|array
      */
-    public static function findLatest(int $quantity = 1)
+    public static function findLatest(int $quantity = 10)
     {
         $db = Db::instance();
         $sql = 'SELECT * FROM ' . static::TABLE . ' ORDER BY id DESC LIMIT ' . $quantity;
-        //var_dump($db->query($sql, static::class));
         return $db->query($sql, static::class);
     }
 

@@ -11,7 +11,7 @@ class Twig
 
     public function __construct(string $template, $data)
     {
-        $res = $this->analizeTemplate($template);
+        $res = $this->parseTemplate($template);
         $this->fileTemplate = $res['file'];
 
         $loader = new \Twig_Loader_Filesystem($res['path']);
@@ -19,7 +19,7 @@ class Twig
         $this->data = $data;
     }
 
-    protected function analizeTemplate(string $template)
+    protected function parseTemplate(string $template)
     {
         $str = str_replace('\\', '/', $template);
         $parts = explode('/', $str);

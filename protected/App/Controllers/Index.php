@@ -10,6 +10,7 @@ use App\Models\Article;
  */
 class Index extends Controller
 {
+
     /**
      * @return void
      * @throws \Exception
