@@ -17,7 +17,7 @@ try {
 } catch (\App\Error404 $ex) {
     $controllerError = new \App\Controllers\Errors;
     $controllerError->actionShowError404($ex);
-} catch (\App\Errors $errors) {
+} catch (\Baskakov\MultiException\Errors $errors) {
     $controllerError = new \App\Controllers\Errors;
     $controllerError->actionShowAllErrors($errors);
 } catch (Throwable $ex) {

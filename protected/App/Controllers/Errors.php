@@ -45,10 +45,10 @@ class Errors extends Controller
     }
 
     /**
-     * @param \App\Errors $errors
+     * @param \Baskakov\MultiException\Errors $errors
      * @return void
      */
-    public function actionShowAllErrors(\App\Errors $errors)
+    public function actionShowAllErrors(\Baskakov\MultiException\Errors $errors)
     {
         $errorMessage = [];
         foreach ($errors as $error) {

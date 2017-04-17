@@ -4,9 +4,9 @@ namespace App\Models;
 
 use App\Db;
 use App\Error404;
-use App\Errors;
 use App\IteratorTrait;
 use App\MagicTrait;
+use Baskakov\MultiException\Errors;
 
 /**
  * Class Model

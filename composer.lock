@@ -4,8 +4,45 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "843b04df5fdfe76251025001d66e0fd2",
+    "content-hash": "03e282c037a06f012ef7167f68d8dc92",
     "packages": [
+        {
+            "name": "baskakov/multiexception",
+            "version": "1.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/IgorBaskakov/MultiException.git",
+                "reference": "2fd8a0080850906aeb81e1c67041274a32c96add"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/IgorBaskakov/MultiException/zipball/2fd8a0080850906aeb81e1c67041274a32c96add",
+                "reference": "2fd8a0080850906aeb81e1c67041274a32c96add",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Baskakov\\MultiException\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL v.3"
+            ],
+            "authors": [
+                {
+                    "name": "Igor Baskakov",
+                    "email": "igor.baskak@gmail.com",
+                    "role": "Tester"
+                }
+            ],
+            "description": "library classes of pattern multiexception for PHP",
+            "time": "2017-04-17T15:22:10+00:00"
+        },
         {
             "name": "symfony/polyfill-mbstring",
             "version": "v1.3.0",
