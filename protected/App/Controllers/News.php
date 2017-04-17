@@ -17,10 +17,11 @@ class News extends Controller
      */
     protected function actionOne()
     {
-        $this->view->item = Article::findOneById($_GET['id'] ?? null);
-        if (false === $this->view->item) {
+        $data = Article::findOneById($_GET['id'] ?? null);
+        if (false === $data) {
             throw new Error404('Данные не найдены');
         } else {
+            $this->view->item = $data;
             $this->view->displayWithTwig(__DIR__ . '/../../templates/one.php');
         }
     }

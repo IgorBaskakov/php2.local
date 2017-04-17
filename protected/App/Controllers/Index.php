@@ -17,11 +17,14 @@ class Index extends Controller
      */
     protected function actionDefault()
     {
-        $this->view->articles = Article::findAll();
-        if (false === $this->view->articles) {
+        $data = Article::findAll();
+        if (false === $data) {
             throw new \Exception('Отсутствуют ВСЕ данные');
+        } else {
+            $this->view->articles = $data;
+            $this->view->displayWithTwig(__DIR__ . '/../../templates/default.php');
         }
-        $this->view->displayWithTwig(__DIR__ . '/../../templates/default.php');
+
     }
 
 }
