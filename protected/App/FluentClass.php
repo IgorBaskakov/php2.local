@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Baskakov\MultiException\Errors;
+
 /**
  * Class FluentClass
  * @package App

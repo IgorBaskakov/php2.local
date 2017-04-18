@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Components\Config;
+use App\Exceptions\DbException;
 
 /**
  * Class Db
@@ -17,7 +18,7 @@ class Db
 
     /**
      * Db constructor.
-     * @throws ErrorDb
+     * @throws DbException
      */
     protected function __construct()
     {
@@ -32,7 +33,7 @@ class Db
             );
             $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         } catch (\PDOException $e) {
-            throw new ErrorDb('Ошибка подключения к БД');
+            throw new DbException($e->getMessage());
         }
     }
 
@@ -40,7 +41,7 @@ class Db
      * @param string $sql
      * @param string $class
      * @param array $params
-     * @throws ErrorDb
+     * @throws DbException
      * @return array|bool
      */
     public function query(string $sql, string $class = \stdClass::class, array $params = [])
@@ -50,14 +51,14 @@ class Db
             $res = $sth->execute($params);
             return (true === $res) ? $sth->fetchAll(\PDO::FETCH_CLASS, $class) : false;
         } catch (\PDOException $e) {
-            throw new ErrorDb('Ошибка выполнения запроса с возвратом данных');
+            throw new DbException('Query error');
         }
     }
 
     /**
      * @param string $sql
      * @param array $params
-     * @throws ErrorDb
+     * @throws DbException
      * @return bool
      */
     public function execute(string $sql, array $params = [])
@@ -66,12 +67,12 @@ class Db
             $sth = $this->dbh->prepare($sql);
             return $sth->execute($params);
         } catch (\PDOException $e) {
-            throw new ErrorDb('Ошибка выполнения запроса');
+            throw new DbException('Ошибка выполнения запроса');
         }
     }
 
     /**
-     * @throws ErrorDb
+     * @throws DbException
      * @return string
      */
     public function getLastInsertId()
@@ -79,7 +80,7 @@ class Db
         try {
             return $this->dbh->lastInsertId();
         } catch (\PDOException $e) {
-            throw new ErrorDb('Ошибка при попытке вернуть ID последней записи');
+            throw new DbException('Ошибка при попытке вернуть ID последней записи');
         }
     }
 

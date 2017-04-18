@@ -3,8 +3,8 @@
 namespace App\Controllers;
 
 use App\Components\Logger;
-use \App\ErrorDb;
-use \App\Error404;
+use \App\DbException;
+use \App\E404Exception;
 
 /**
  * Class Errors
@@ -22,10 +22,10 @@ class Errors extends Controller
     }
 
     /**
-     * @param ErrorDb $error
+     * @param DbException $error
      * @return void
      */
-    public function actionShowErrorDb(ErrorDb $error)
+    public function actionShowErrorDb(DbException $error)
     {
         $this->view->error = $error->getMessage();
         $this->logger->writeLog('Ошибка в работе с БД', $error);
@@ -33,10 +33,10 @@ class Errors extends Controller
     }
 
     /**
-     * @param Error404 $error
+     * @param E404Exception $error
      * @return void
      */
-    public function actionShowError404(Error404 $error)
+    public function actionShowError404(E404Exception $error)
     {
         $this->view->error = $error->getMessage();
         $this->logger->writeLog('Данные не найдены', $error);

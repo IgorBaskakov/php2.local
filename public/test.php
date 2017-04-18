@@ -1,36 +1,31 @@
 <?php
 
-require_once __DIR__ . '/../protected/autoload.php';
-//require_once __DIR__ . '/../vendor/autoload.php';
-/*
-function ($x)
+interface LoggerInterface
 {
-    return $x * 2;
-};
-
-$m3 = function ($x)
-{
-    return $x * 3;
-};
-
-function apply($x, callable $func)
-{
-    //var_dump($func);
-    return $func($x);
+    public function log(string $message);
 }
 
-echo apply(2, $m3);
-*/
+class Mailer
+{
+     /** @var LoggerInterface */
+    protected $logger;
+    public function setLogger(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
 
+    public function test()
+    {
+        echo 'Work...';
+        $this->logger->log('Finish');
+    }
+}
 
-$loader = new Twig_Loader_Array(['index' => 'Hello {{ name }}!']);
-$twig = new Twig_Environment($loader);
-echo $twig->render('index', ['name' => 'Igor Baskakov']);
-
-$loader = new Twig_Loader_Filesystem(__DIR__ . '/../protected/templates');
-$twig = new Twig_Environment($loader, ['cache' => 'cache']);
-echo $twig->render('index.html', ['name' => 'Igor Baskakov']);
-
-
-//$l = new Twig_Node();
-//var_dump($l);
+$mailer = new Mailer();
+$mailer->setLogger(new class implements LoggerInterface {
+    public function log(string $message)
+    {
+        echo $message;
+    }
+});
+$mailer->test();

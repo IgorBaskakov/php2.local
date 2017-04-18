@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Db;
-use App\Error404;
 use App\IteratorTrait;
 use App\MagicTrait;
 use Baskakov\MultiException\Errors;
@@ -26,7 +25,6 @@ abstract class Model implements \Iterator
 
     /**
      * @return array|bool
-     * @throws Error404
      */
     public static function findAll()
     {
@@ -38,7 +36,6 @@ abstract class Model implements \Iterator
     /**
      * @param int|null $id
      * @return object|bool
-     * @throws Error404
      */
     public static function findOneById(int $id = null)
     {

@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Exceptions\E404Exception;
 use App\Models\Article;
 
 /**
@@ -10,21 +11,20 @@ use App\Models\Article;
  */
 class Index extends Controller
 {
-
     /**
      * @return void
      * @throws \Exception
      */
     protected function actionDefault()
     {
-        $data = Article::findAll();
-        if (false === $data) {
-            throw new \Exception('Отсутствуют ВСЕ данные');
-        } else {
-            $this->view->articles = $data;
-            $this->view->displayWithTwig(__DIR__ . '/../../templates/default.php');
+        $articles = Article::findAll();
+
+        if (empty($articles)) {
+            throw new E404Exception('data not found');
         }
 
+        $this->view->articles = $articles;
+        $this->view->displayWithTwig(__DIR__ . '/../../templates/default.php');
     }
 
 }

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controllers;
-use App\Error404;
+use App\E404Exception;
 use App\View;
 
 /**
@@ -49,12 +49,12 @@ abstract class Controller
     /**
      * @param $name
      * @param $arguments
-     * @throws Error404
+     * @throws E404Exception
      * @return void
      */
     public function __call($name, $arguments)
     {
-        throw new Error404('Страница не найдена');
+        throw new E404Exception('Страница не найдена');
     }
 
 }
