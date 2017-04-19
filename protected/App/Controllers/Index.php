@@ -19,7 +19,7 @@ class Index extends Controller
     {
         $articles = Article::findAll();
 
-        if (empty($articles)) {
+        if (false === $articles) {
             throw new E404Exception('data not found');
         }
 

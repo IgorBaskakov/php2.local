@@ -19,7 +19,8 @@ class News extends Controller
     {
         $item = Article::findOneById($_GET['id'] ?? null);
 
-        if (empty($item)) {
+        //var_dump($item);
+        if (false === $item) {
             throw new E404Exception('data not found');
         }
 

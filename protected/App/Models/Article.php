@@ -45,7 +45,7 @@ class Article extends Model
 
     public function setTitle(string $data)
     {
-        if (empty($data)) {
+        if ('' == trim($data)) {
             throw new \Exception('Заголовок новости должен быть заполнен');
         }
         $this->data['title'] = $data;
@@ -53,7 +53,7 @@ class Article extends Model
 
     public function setLead(string $data)
     {
-        if (empty($data)) {
+        if ('' == trim($data)) {
             throw new \Exception('Содержание новости должно быть заполнено');
         }
         $this->data['lead'] = $data;

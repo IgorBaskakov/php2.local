@@ -57,6 +57,36 @@ class Db
 
     /**
      * @param string $sql
+     * @param string $class
+     * @param array $params
+     * @throws DbException
+     * @return array|bool
+     */
+    public function queryEach(string $sql, string $class = \stdClass::class, array $params = [])
+    {
+        try {
+            $sth = $this->dbh->prepare($sql);
+            $sth->setFetchMode(\PDO::FETCH_CLASS, $class);
+            $res = $sth->execute($params);
+
+            while (true === $res) {
+                $data = $sth->fetch();
+                if ($data instanceof $class) {
+                    yield $data;
+                } else {
+                    $res = false;
+                }
+            }
+            return false;
+            //return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
+            //return (true === $res) ? $sth->fetch() : false;
+        } catch (\PDOException $e) {
+            throw new DbException('Query error');
+        }
+    }
+
+    /**
+     * @param string $sql
      * @param array $params
      * @throws DbException
      * @return bool

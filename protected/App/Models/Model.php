@@ -30,7 +30,7 @@ abstract class Model implements \Iterator
     {
         $db = Db::instance();
         $sql = 'SELECT * FROM ' . static::TABLE;
-        return $db->query($sql, static::class);
+        return $db->queryEach($sql, static::class);
     }
 
     /**
@@ -43,6 +43,7 @@ abstract class Model implements \Iterator
         $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=:id';
         $res = $db->query($sql, static::class, [':id' => $id]);
         return $res ? $res[0] : false;
+
     }
 
     /**
