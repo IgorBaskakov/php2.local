@@ -16,10 +16,10 @@ return [
     },
     function (Article $model)
     {
-        return '<a href=/admin/Index/Update/?id=' . $model->id . '><button>Редактировать</button></a>';
+        return '<a href="/admin/Index/Update/?id=' . $model->id . '">Изменить</a>';
     },
     function (Article $model)
     {
-        return '<a href=/admin/Editing/Delete/?id=' . $model->id . '><button>Удалить</button></a>';
+        return '<a href="/admin/Editing/Delete/?id=' . $model->id . '">Удалить</a>';
     },
 ];

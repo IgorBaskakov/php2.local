@@ -12,7 +12,7 @@ use App\Models\Article;
 class Editing extends Controller
 {
 
-    /** @var object Should contatin a dataFromUser */
+    /** @var object Should contain a dataFromUser */
     protected $dataFromUser;
 
     /**

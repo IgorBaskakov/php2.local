@@ -22,18 +22,10 @@
     <h1>Админская панель</h1>
     <hr>
     <div class="admin">
-
         <a href="/admin/Index/Create"><button>Добавить новость</button></a>
         <a href="/Index/Default"><button>Выйти из админ-панели</button></a>
-
     </div>
     <hr>
-    <?php
-        $funcs = include __DIR__ . '/../../functions.php';
-        $adminDataTable = new \App\AdminDataTable($articles, $funcs);
-
-        $table = $adminDataTable->render();
-    ?>
 
     <table>
         <caption>Новости</caption>
