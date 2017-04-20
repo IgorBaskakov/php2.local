@@ -15,29 +15,6 @@
         table caption {
             font-size: larger;
         }
-        .id {
-            width: 40px;
-            margin: 10px 50px 5px 10px;
-            font-weight: bolder;
-        }
-        .title {
-            width: 98%;
-            margin: 10px 50px 5px 10px;
-            padding: 10px;
-            font-weight: bolder;
-        }
-        .lead {
-            width: 98%;
-            height: 200px;
-            margin: 10px;
-            padding: 10px;
-        }
-        .buttons {
-            text-align: right;
-            padding: 20px;
-            margin: 15px;
-        }
-
     </style>
     <title>Админ панель</title>
 </head>
