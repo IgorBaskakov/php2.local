@@ -19,13 +19,12 @@ class News extends Controller
     {
         $item = Article::findOneById($_GET['id'] ?? null);
 
-        //var_dump($item);
         if (false === $item) {
             throw new E404Exception('data not found');
         }
 
         $this->view->item = $item;
-        $this->view->displayWithTwig(__DIR__ . '/../../templates/one.php');
+        $this->view->displayWithTwig(__DIR__ . '/../../templates', 'one.php');
     }
 
 }

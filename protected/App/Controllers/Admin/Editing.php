@@ -35,7 +35,7 @@ class Editing extends Controller
      */
     protected function actionEdit()
     {
-        $article = Article::findOneById((int)$_POST['id']);
+        $article = Article::findOneById((int)$_GET['id']);
         $article->fill([
             'title' => $_POST['title'],
             'lead' => $_POST['lead']

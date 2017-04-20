@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controllers;
-use App\E404Exception;
+use App\Exceptions\E404Exception;
 use App\View;
 
 /**

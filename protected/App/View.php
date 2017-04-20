@@ -2,8 +2,6 @@
 
 namespace App;
 
-use App\Components\Twig;
-
 /**
  * Class View
  * @package App
@@ -46,13 +44,15 @@ class View implements
     }
 
     /**
-     * @param string $template
+     * @param string $path
+     * @param string $templateName
      * @return void
      */
-    public function displayWithTwig(string $template)
+    public function displayWithTwig(string $path, string $templateName)
     {
-        $twig = new Twig($template, $this->data);
-        echo $twig->render();
+        $loader = new \Twig_Loader_Filesystem($path);
+        $envt = new \Twig_Environment($loader);
+        echo $envt->render($templateName, $this->data);
     }
 
     /**
@@ -62,5 +62,6 @@ class View implements
     {
         return count($this->data);
     }
+
 
 }

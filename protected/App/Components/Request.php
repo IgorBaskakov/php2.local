@@ -49,7 +49,7 @@ class Request
             $this->data['ctrl'] = $pathDefault . '\\' . static::CONTROLLER;
         }
 
-        if (!empty($action) && 'index.php' !== $action) {
+        if (!empty($action) && 'insert.php' !== $action) {
             $this->data['act'] = $action;
         } else {
             $this->data['act'] = static::ACTION;

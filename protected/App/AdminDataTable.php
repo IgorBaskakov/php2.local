@@ -17,10 +17,12 @@ class AdminDataTable
     public function render()
     {
         $table = [];
+        $i = 0;
         foreach ($this->models as $model) {
-            foreach ($this->funcs as $name => $func) {
-                $table[$model->id][$name] = $func($model);
+            foreach ($this->funcs as $func) {
+                $table[$i][] = $func($model);
             }
+            $i++;
         }
         return $table;
     }

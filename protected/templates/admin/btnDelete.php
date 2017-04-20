@@ -1,1 +1,0 @@
-<a href="/admin/Editing/Delete/?id=<?php echo $article->id; ?>"><button>Удалить</button></a>

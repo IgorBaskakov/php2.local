@@ -19,26 +19,19 @@ class Index extends Controller
     protected function actionDefault()
     {
         $quantityNews = 10;
-
-        $articles = Article::findLatest($quantityNews);
-
-        $funcs = [
-            'drawForm' => function ($model)
-                {
-                    $this->view->article = $model;
-                    return $this->view->render(__DIR__ . '/../../../templates/admin/form.php');
-                },
-            'drawBtnDelete' => function ($model)
-                {
-                    $this->view->article = $model;
-                    return $this->view->render(__DIR__ . '/../../../templates/admin/btnDelete.php');
-                }
-        ];
-
-        $adminDataTable = new AdminDataTable($articles, $funcs);
-        $this->view->table = $adminDataTable->render();
-
+        $this->view->articles = Article::findLatest($quantityNews);
         $this->view->display(__DIR__ . '/../../../templates/admin/index.php');
     }
 
+    protected function actionCreate()
+    {
+        $this->view->data = null;
+        $this->view->display(__DIR__ . '/../../../templates/admin/insert.php');
+    }
+
+    protected function actionUpdate()
+    {
+        $this->view->article = Article::findOneById((int)$_GET['id']);
+        $this->view->display(__DIR__ . '/../../../templates/admin/update.php');
+    }
 }

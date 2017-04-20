@@ -24,7 +24,7 @@ class Index extends Controller
         }
 
         $this->view->articles = $articles;
-        $this->view->displayWithTwig(__DIR__ . '/../../templates/default.php');
+        $this->view->displayWithTwig(__DIR__ . '/../../templates', 'default.php');
     }
 
 }
