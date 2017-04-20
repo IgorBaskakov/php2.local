@@ -2,9 +2,9 @@
 
 namespace App\Controllers\Admin;
 
-use App\AdminDataTable;
 use App\Controllers\Controller;
 use App\Models\Article;
+use App\View\ViewNative;
 
 /**
  * Class Index
@@ -12,6 +12,14 @@ use App\Models\Article;
  */
 class Index extends Controller
 {
+
+    /**
+     * Index constructor.
+     */
+    public function __construct()
+    {
+        $this->view = new ViewNative;
+    }
 
     /**
      * @return void

@@ -29,7 +29,7 @@ class Errors extends Controller
     {
         $this->view->error = $error->getMessage();
         $this->logger->writeLog('Ошибка в работе с БД', $error);
-        $this->view->displayWithTwig(__DIR__ . '/../../templates/errors/', 'error.php');
+        $this->view->display(__DIR__ . '/../../templates/errors/error.php');
     }
 
     /**
@@ -41,7 +41,7 @@ class Errors extends Controller
         $this->view->error = $error->getMessage();
         $this->logger->writeLog('Данные не найдены', $error);
         header("HTTP/1.0 404 Not Found");
-        $this->view->displayWithTwig(__DIR__ . '/../../templates/errors/', 'error404.php');
+        $this->view->display(__DIR__ . '/../../templates/errors/error404.php');
     }
 
     /**
@@ -56,7 +56,7 @@ class Errors extends Controller
             $errorMessage[]= $error->getMessage();
         }
         $this->view->errors = $errorMessage;
-        $this->view->displayWithTwig(__DIR__ . '/../../templates/errors/', 'errors.php');
+        $this->view->display(__DIR__ . '/../../templates/errors/errors.php');
     }
 
     /**
@@ -67,6 +67,6 @@ class Errors extends Controller
     {
         $this->view->error = $error->getMessage();
         $this->logger->writeLog('Неопознанная ошибка', $error);
-        $this->view->displayWithTwig(__DIR__ . '/../../templates/errors/', 'error.php');
+        $this->view->display(__DIR__ . '/../../templates/errors/error.php');
     }
 }

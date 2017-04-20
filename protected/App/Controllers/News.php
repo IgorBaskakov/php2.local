@@ -24,7 +24,7 @@ class News extends Controller
         }
 
         $this->view->item = $item;
-        $this->view->displayWithTwig(__DIR__ . '/../../templates', 'one.php');
+        $this->view->display(__DIR__ . '/../../templates/one.php');
     }
 
 }

@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 use App\Exceptions\E404Exception;
-use App\View;
+use App\View\ViewTwig;
 
 /**
  * Class Controller
@@ -19,7 +19,7 @@ abstract class Controller
      */
     public function __construct()
     {
-        $this->view = new View;
+        $this->view = new ViewTwig;
     }
 
     /**
