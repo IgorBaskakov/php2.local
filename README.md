@@ -20,3 +20,5 @@
 
 пакет composer:
 https://packagist.org/packages/baskakov/multiexception
+
+выполнена домашняя работа к уроку №7
