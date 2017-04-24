@@ -29,7 +29,7 @@ class Index extends Controller
         $quantityNews = 10;
 
         $this->view->articles = Article::findLatest($quantityNews);
-        $this->view->displayAdminDataTable(__DIR__ . '/../../../templates/admin/index.php');
+        $this->view->display(__DIR__ . '/../../../templates/admin/index.php');
     }
 
     protected function actionCreate()
@@ -40,9 +40,7 @@ class Index extends Controller
 
     protected function actionUpdate()
     {
-        //var_dump($_POST);die;
         $this->view->article = Article::findOneById((int)$_GET['id']);
-
         $this->view->display(__DIR__ . '/../../../templates/admin/update.php');
     }
 }

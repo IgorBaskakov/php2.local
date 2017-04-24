@@ -67,19 +67,13 @@ class Db
         try {
             $sth = $this->dbh->prepare($sql);
             $sth->setFetchMode(\PDO::FETCH_CLASS, $class);
-            $res = $sth->execute($params);
 
-            while (true === $res) {
-                $data = $sth->fetch();
-                if ($data instanceof $class) {
+            if ($sth->execute($params)) {
+                while ($data = $sth->fetch()) {
                     yield $data;
-                } else {
-                    $res = false;
                 }
             }
-            return false;
-            //return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
-            //return (true === $res) ? $sth->fetch() : false;
+
         } catch (\PDOException $e) {
             throw new DbException('Query error');
         }

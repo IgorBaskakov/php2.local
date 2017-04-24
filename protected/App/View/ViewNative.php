@@ -29,18 +29,4 @@ class ViewNative extends ViewAbstract
         return $content;
     }
 
-    /**
-     * @param string $template
-     * @return void
-     */
-    public function displayAdminDataTable(string $template)
-    {
-        $funcs = include __DIR__ . '/../../functions.php';
-
-        $adminDataTable = new AdminDataTable($this->articles, $funcs);
-        $this->table = $adminDataTable->render();
-
-        $this->display($template);
-    }
-
 }

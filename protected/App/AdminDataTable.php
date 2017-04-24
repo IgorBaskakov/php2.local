@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use App\View\ViewNative;
 
 /**
  * Class AdminDataTable
@@ -25,19 +26,14 @@ class AdminDataTable
     }
 
     /**
-     * @return array
+     * @return void
      */
     public function render()
     {
-        $table = [];
-        $i = 0;
-        foreach ($this->models as $model) {
-            foreach ($this->funcs as $func) {
-                $table[$i][] = $func($model);
-            }
-            $i++;
-        }
-        return $table;
+        $view = new ViewNative;
+        $view->models = $this->models;
+        $view->funcs = $this->funcs;
+        $view->display(__DIR__ . '/../templates/admin/table.php');
     }
 
 }

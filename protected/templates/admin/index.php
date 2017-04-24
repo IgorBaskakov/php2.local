@@ -26,44 +26,12 @@
         <a href="/Index/Default"><button>Выйти из админ-панели</button></a>
     </div>
     <hr>
+    <?php
+        $functions = include __DIR__ . '/../../functions.php';
+        $adminDataTable = new \App\AdminDataTable($this->articles, $functions);
+        $adminDataTable->render();
+    ?>
 
-    <table>
-        <caption>Новости</caption>
-        <?php
-            $i = 0;
-            foreach ($table as $article) : ?>
-                <?php if (0 === $i) : ?>
-                    <tr>
-                        <th>
-                            №
-                        </th>
-                        <th>
-                            Заголовок
-                        </th>
-                        <th>
-                            Содержание новости
-                        </th>
-                        <th>
-                            Автор
-                        </th>
-                        <th colspan="2">
-                            Действия
-                        </th>
-                    </tr>
-                <?php endif; ?>
-
-                <tr>
-                    <td>
-                        <?php echo ++$i; ?>
-                    </td>
-                    <?php foreach ($article as $item) : ?>
-                        <td>
-                            <?php echo $item; ?>
-                        </td>
-                    <?php endforeach; ?>
-                </tr>
-            <?php endforeach; ?>
-    </table>
 
 </body>
 </html>
