@@ -2,7 +2,7 @@
 
 namespace App\View;
 
-use App\AdminDataTable;
+
 
 /**
  * Class ViewNative

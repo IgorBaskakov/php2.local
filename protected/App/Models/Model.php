@@ -20,7 +20,7 @@ abstract class Model implements \Iterator
 
     /** @var array Should contain a data */
     protected $data = [];
-
+    
     protected const TABLE = null;
 
     /**

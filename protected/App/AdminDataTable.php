@@ -26,14 +26,17 @@ class AdminDataTable
     }
 
     /**
-     * @return void
+     * @return string
      */
-    public function render()
+    public function render($template)
     {
         $view = new ViewNative;
         $view->models = $this->models;
         $view->funcs = $this->funcs;
-        $view->display(__DIR__ . '/../templates/admin/table.php');
+
+        ob_start();
+        $view->display($template);
+        return ob_get_clean();
     }
 
 }

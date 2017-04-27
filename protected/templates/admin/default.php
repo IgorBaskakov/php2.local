@@ -19,6 +19,7 @@
     <title>Админ панель</title>
 </head>
 <body>
+
     <h1>Админская панель</h1>
     <hr>
     <div class="admin">
@@ -26,12 +27,8 @@
         <a href="/Index/Default"><button>Выйти из админ-панели</button></a>
     </div>
     <hr>
-    <?php
-        $functions = include __DIR__ . '/../../functions.php';
-        $adminDataTable = new \App\AdminDataTable($this->articles, $functions);
-        $adminDataTable->render();
-    ?>
 
+    <?php echo $table; ?>
 
 </body>
 </html>

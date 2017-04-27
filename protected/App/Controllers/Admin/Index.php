@@ -28,14 +28,18 @@ class Index extends Controller
     {
         $quantityNews = 10;
 
-        $this->view->articles = Article::findLatest($quantityNews);
-        $this->view->display(__DIR__ . '/../../../templates/admin/index.php');
+        $this->view->table = (new \App\AdminDataTable(
+            Article::findLatest($quantityNews),
+            include __DIR__ . '/../../View/functions.php'
+        ))->render(__DIR__ . '/../../../templates/admin/table.php');
+
+        $this->view->display(__DIR__ . '/../../../templates/admin/default.php');
     }
 
     protected function actionCreate()
     {
         $this->view->data = null;
-        $this->view->display(__DIR__ . '/../../../templates/admin/insert.php');
+        $this->view->display(__DIR__ . '/../../../templates/admin/create.php');
     }
 
     protected function actionUpdate()

@@ -11,10 +11,10 @@ $controllerClassName = '\\App' . $controllerName;
 try {
     $controller = new $controllerClassName;
     $controller->action($result['act']);
-} catch (\App\DbException $ex) {
+} catch (\App\Exceptions\DbException $ex) {
     $controllerError = new \App\Controllers\Errors;
     $controllerError->actionShowErrorDb($ex);
-} catch (\App\E404Exception $ex) {
+} catch (\App\Exceptions\E404Exception $ex) {
     $controllerError = new \App\Controllers\Errors;
     $controllerError->actionShowError404($ex);
 } catch (\Baskakov\MultiException\Errors $errors) {
