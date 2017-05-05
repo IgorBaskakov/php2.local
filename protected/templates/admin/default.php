@@ -28,7 +28,10 @@
     </div>
     <hr>
 
-    <?php echo $table; ?>
+    <?php
+        $adminDataTable = new \App\AdminDataTable($articles, include __DIR__ . '/../../App/View/functions.php');
+        echo $adminDataTable->render(__DIR__ . '/table.php');
+    ?>
 
 </body>
 </html>

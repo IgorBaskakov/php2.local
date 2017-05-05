@@ -11,6 +11,8 @@
                     <?php echo $func($model); ?>
                 </td>
             <?php endforeach; ?>
+            <td><a href="/admin/Index/Update/?id=<?php echo $model->id; ?>">Изменить</a></td>
+            <td><a href="/admin/Editing/Delete/?id=<?php echo $model->id; ?>">Удалить</a></td>
         </tr>
     <?php endforeach; ?>
 </table>

@@ -34,9 +34,7 @@ class AdminDataTable
         $view->models = $this->models;
         $view->funcs = $this->funcs;
 
-        ob_start();
-        $view->display($template);
-        return ob_get_clean();
+        return $view->render($template);
     }
 
 }
